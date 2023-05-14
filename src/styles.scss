@@ -1,4 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+
+@include mat.core();
+
 :root {
     --primary: #461D6C;
     --lighter25: #582487;
@@ -23,6 +27,8 @@
     justify-content: center;
     align-items: center;
 }
+
+
 
 body {
     background: var(--primary);

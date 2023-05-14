@@ -1,0 +1,68 @@
+<div class="section-2" id="sec2">
+    <div class="separator"></div>
+    <div class="section2-content">
+        <h2>Vuelve la segunda edicion de la carrera</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio quasi sequi laboriosam nam culpa nobis reiciendis ullam corrupti, impedit eos eum ad numquam. Accusantium reprehenderit necessitatibus voluptatibus inventore illum ut?</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio quasi sequi laboriosam nam culpa nobis reiciendis ullam corrupti, impedit eos eum ad numquam. Accusantium reprehenderit necessitatibus voluptatibus inventore illum ut?</p>
+        <div class="stats">
+            <div class="stat runners">
+                <div class="total"><h2>400+</h2></div>
+                <p>Corredores</p>
+            </div>
+            <div class="stat circuitos">
+                <div class="total"><h2>4+</h2></div>
+                <p>Circuitos</p>
+            </div>
+            <div class="stat categorias">
+                <div class="total"><h2>6+</h2></div>
+                <p>Categorias</p>
+            </div>
+        </div>
+        <div class="sec-categorias">
+            <div class="overlay"></div>
+            <div class="card-container">
+                <swiper-container slides-per-view="1" pagination="true" navigation="true">
+                    <swiper-slide *ngFor="let _card of cardCat">
+                        <div class="card">
+                            <div class="title"><h2>{{_card.title}}</h2></div>
+                            <div class="list">
+                                <ul>
+                                    <li><strong>Largada:</strong> <br>{{_card.largada}}</li>
+                                    <li><strong>Kit Corredor:</strong><br> {{_card.kit_corredor}}</li>
+                                    <li><strong>Categorias:</strong><br> {{_card.categorias}}</li>
+                                    <li><strong>Circuito:</strong><br> {{_card.circuito}}</li>
+                                </ul>
+                            </div>
+                            <div class="btn-container">
+                                <button>Inscribirse</button>
+                            </div>
+                        </div>
+                    </swiper-slide>
+                </swiper-container>
+            </div>
+        </div>
+
+        <div class="register-form">
+            <div class="form-wrapper">
+                <div class="overlay"></div>
+                <div class="form-content">
+                    <div class="form-title">
+                        <h2>Formulario de inscripcion</h2>
+                    </div>
+                    <p>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Circuito</mat-label>
+                            <mat-select [formControl]="catPriceControl" required>
+                                <mat-option *ngFor="let cat of catPrices" value="cat">{{cat.name}}</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="selectCatPriceFormControl.hasError('required')">Elige un circuito</mat-error>
+                            <mat-hint>{{catPriceControl.value?.price}}</mat-hint>
+                        </mat-form-field>
+                    </p>
+                </div>
+                <div class="buttons"></div>
+            </div>
+        </div>
+    </div>
+</div>
+ 
