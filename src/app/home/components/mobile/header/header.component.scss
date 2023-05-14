@@ -1,0 +1,218 @@
+@import '/src/styles.scss';
+
+.wrapper {
+    width: 100%;
+    height: 87vh;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    justify-content: start;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+
+    .section-desktop {
+        display: none;
+    }
+
+    .img-overlay {
+        width: 120%;
+        min-height: 120vh;
+        position: absolute;
+    
+    }
+    
+    .overlay {
+        width: 120%;
+        min-height: 120vh;
+        position: absolute;
+        background-color: var(--primary);
+        opacity: 0.75;
+    }
+    
+    
+    .section-1 {
+        position: relative;
+        .title-container {
+            margin-top: 1rem;
+            padding: 8px 16px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: auto;
+            .title-logo {
+                
+                width: 100%;
+                img {
+                    height: 240px;
+                }
+            }
+            h2 {
+                font-size: 1.5em;
+                font-weight: 800;
+                color: white;
+                text-transform: uppercase;
+                font-style: italic;
+            }
+            p {
+                color: var(--white);
+                padding: 8px 12px;
+                font-size: 18px;
+            }
+    
+            button {
+                margin: 16px 0px;
+                background: var(--secondary);
+                height: 54px;
+                width: 240px;
+                border-radius: 10px;
+                font-size: 20px;
+                text-transform: uppercase;
+                color: var(--primary);
+                font-weight: 600;
+            }
+    
+            .social-media {
+                margin: 40px;
+                width: 100%;
+                padding: 8px 24px;
+                display: flex;
+                flex-direction: row;
+                height: 60px;
+                justify-content: space-between;
+                align-items: center;
+                .left-side, .right-side {
+                    width: 12vh;
+                    height: 2px;
+                    background: var(--secondary);
+                    border-radius: 0 50px 0 50px;
+                }
+    
+                .logo-1 {
+                    width: 48px;
+                    height: 48px;
+                    background-color: var(--primary);
+                    border-radius: 50%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    ion-icon {
+                        opacity: 0.8;
+                        height: 32px;
+                        width: 32px;
+                    }
+                }
+                
+            }
+    
+            
+              
+    
+        }
+    }
+}
+
+@media (min-width: 800px){
+    .wrapper {
+        width: 100%;
+        height: 100vh;
+        overflow-x: hidden;
+        overflow-y: hidden;
+        justify-content: start;
+        text-align: center;
+        display: flex;
+        flex-direction: row;
+
+        .section-1 {
+            display: none;
+        }
+
+        .img-overlay {
+            display: none;
+        }
+
+        .overlay {
+            display: none;
+        }
+        
+
+        .section-desktop {
+            display: flex;
+            flex-direction: row;
+            height: 100vh;
+            width: 100%;
+            background: #323232;
+            justify-content: center;
+            position: relative;
+            .overlay-clipped{
+                position: relative;
+                opacity: 0.85;
+                width: 100%;
+                transform: scale(1.1);
+                background-color: var(--primary);
+                clip-path: inset(0 40% 0 0 round 0% 15% 45% 0%);
+                
+            }
+            .img-clipped {
+                position: absolute;
+                transform: scale(1.5);
+                height: 100vh;
+                width: 100%;
+                clip-path: inset(0 45% 0 0 round 0% 40% 60% 0%);
+            }
+
+            .sd-content {
+                position: absolute;
+                display: flex;
+                flex-direction: row;
+                max-width: 100%;
+                height: 100%;
+                .sd-logo {
+                    margin: auto 0px;
+                    width: 60%;
+                    padding: 10px;
+                    img {
+                        width: 120%;
+                        transform: translateX(0px);
+                        margin: auto 0px;
+                    }
+                }
+
+                .title-container {
+                    max-width: 40%;
+                    padding: 40px 16px;
+                    margin: auto 0px;
+                    h2 {
+                        color: var(--white);
+                        font-size: 2em;
+                        font-weight: 800;
+                        font-style: italic;
+                        text-transform: uppercase;
+                    }
+                    p {
+                        font-size: 1.2em;
+                        color: var(--white);
+                        font-weight: 400;
+                        text-align: justify;
+                        margin: 32px 0px;
+                        padding: 0px 16px;
+                    }
+                    button {
+                        margin: 16px 0px;
+                        background: var(--secondary);
+                        height: 54px;
+                        width: 240px;
+                        border-radius: 10px;
+                        font-size: 20px;
+                        text-transform: uppercase;
+                        color: var(--primary);
+                        font-weight: 600;
+                    }
+                }
+            }
+        }
+    }
+}
+

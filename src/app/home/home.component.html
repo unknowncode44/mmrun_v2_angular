@@ -1,0 +1,36 @@
+<div class="m-header">
+    <app-toolbar></app-toolbar>
+</div>
+
+<mat-sidenav-container>
+    <mat-sidenav #sidenav mode="over" style="height: 100%;" [opened]="opened">
+        <div class="sidebar-wrapper" >
+            <div class="nav-title">
+                <h2>MMRun 2.0</h2>
+            </div>
+            <div class="nav-item" *ngFor="let item of menu_cats" (click)="onSelect()">
+                <div class="icon"><ion-icon slot="start" name="{{item.icon}}"></ion-icon></div>
+                <div class="section-name">{{item.title}}</div>
+            </div>
+            <br><br>
+        </div>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        
+        
+        <div class="parallax-wrapper">
+            <app-header></app-header>
+            
+            <div class="section-2">
+                <div class="separator"></div>
+                <div class="section2-content">
+                    <h2>Vuelve la segunda edicion de la carrera</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio quasi sequi laboriosam nam culpa nobis reiciendis ullam corrupti, impedit eos eum ad numquam. Accusantium reprehenderit necessitatibus voluptatibus inventore illum ut?</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio quasi sequi laboriosam nam culpa nobis reiciendis ullam corrupti, impedit eos eum ad numquam. Accusantium reprehenderit necessitatibus voluptatibus inventore illum ut?</p>
+                </div>
+            </div>
+        </div>
+        
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>
