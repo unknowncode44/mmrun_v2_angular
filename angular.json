@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/mmrun_v2",
+            "outputPath": "dist/mmrun",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -33,7 +33,7 @@
             "styles": [
               "src/styles.scss",
               "node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
-              "node_modules/primeng/resources/themes/lara-light-blue/theme.css",
+              "node_modules/primeng/resources/themes/md-light-indigo/theme.css",
               "node_modules/primeng/resources/primeng.min.css"
             ],
             "scripts": [

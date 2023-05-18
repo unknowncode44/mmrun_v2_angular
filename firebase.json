@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/mmrun_v2",
+    "public": "dist/mmrun",
     "ignore": [
       "firebase.json",
       "**/.*",
