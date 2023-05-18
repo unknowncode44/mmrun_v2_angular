@@ -281,8 +281,20 @@ mat-sidenav-container {
                                     margin: 16px 8px;
                                     height: 60px;
                                 }
+                                .form-section {
+                                    width: 100%;
+                                    padding: 8px 8px;
+                                    margin: 2px 0px;
+                                    h3 {
+                                        text-align: center;
+                                        margin: 0;
+                                        text-transform: uppercase;
+                                        font-weight: 600;
+                                        color: var(--white);
+                                    }
+                                }
                                 .circ-field {
-                                    margin-top: 1rem;
+                                    margin-top: 0.2rem;
                                     width: 100%;
                                     padding: 0px 32px;
                                     height: 54px;
@@ -292,7 +304,7 @@ mat-sidenav-container {
                                     select {
                                         border-radius: 10px;
                                         padding: 0px 8px;
-                                        width: 100%;
+                                        width: 98%;
                                         font-weight: 600;
                                         color: var(--primary);
                                         background: var(--secondary);
@@ -313,6 +325,20 @@ mat-sidenav-container {
                                         padding: 0px 8px;
                                         font-weight: 600;
                                         color: var(--primary);
+                                    }
+                                    select {
+                                        margin: 4px 2px;
+                                        border-radius: 10px;
+                                        padding: 0px 8px;
+                                        height: 54px;
+                                        width: 98%;
+                                        font-weight: 600;
+                                        color: var(--primary);
+                                        background: var(--secondary);
+                                        option {
+                                            font-weight: 600;
+
+                                        }
                                     }
                                 }
                                 
