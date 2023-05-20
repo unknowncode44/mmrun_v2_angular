@@ -31,8 +31,9 @@
     
     
     .section-1 {
-        position: relative;
+        position: absolute;
         .title-container {
+            z-index: 999;
             margin-top: 1rem;
             padding: 8px 16px;
             width: 100%;

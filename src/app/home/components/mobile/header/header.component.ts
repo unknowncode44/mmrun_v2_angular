@@ -10,6 +10,14 @@ register()
 })
 export class HeaderComponent {
 
-  
+  goToForm(formId: string) : void{
+  console.log("touch");
+    document.getElementById(formId)
+    .scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "nearest"
+    })
+  }
 
 }

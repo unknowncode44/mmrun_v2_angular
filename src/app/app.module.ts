@@ -15,6 +15,8 @@ import { HomeComponent } from './home/home.component';
 import { ToolbarComponent } from './home/components/toolbar/toolbar.component';
 import { HeaderComponent } from './home/components/mobile/header/header.component';
 import { InfoScreenComponent } from './home/components/mobile/info-screen/info-screen.component';
+import { CircuitCardComponent } from './home/components/circuit-card/circuit-card.component';
+import { Sec2contentComponent } from './home/components/sec2content/sec2content.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { InfoScreenComponent } from './home/components/mobile/info-screen/info-s
     HomeComponent,
     ToolbarComponent,
     HeaderComponent,
-    InfoScreenComponent
+    InfoScreenComponent,
+    CircuitCardComponent,
+    Sec2contentComponent
   ],
   imports: [
     BrowserModule,

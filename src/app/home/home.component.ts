@@ -39,9 +39,22 @@ export class HomeComponent {
     })
   }
 
-  onSelect(){
+  onSelect(id?: string){
     this.sServ.setValue(false)
+    // TODO: pasar parametro
+    if (id) {
+      this.goToForm(id)
+    }
   }
+
+  goToForm(id: string) : void{
+    document.getElementById(id)
+    .scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+      inline: "nearest"
+    })
+  } 
   
 
 

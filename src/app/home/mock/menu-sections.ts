@@ -4,17 +4,17 @@ export const menuItems: MenuItem[]  = [
     {
         icon: 'home-outline',
         title: 'Home',
-        route: ''
+        route: 'sec1'
     },
     {
         icon: 'analytics-outline',
         title: 'Circuitos',
-        route: ''
+        route: 'sec2'
     },
     {
         icon: 'person-add-outline',
         title: 'Inscripcion',
-        route: ''
+        route: 'regForm'
     },
     {
         icon: 'enter-outline',
