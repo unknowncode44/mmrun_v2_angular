@@ -17,6 +17,11 @@ import { HeaderComponent } from './home/components/mobile/header/header.componen
 import { InfoScreenComponent } from './home/components/mobile/info-screen/info-screen.component';
 import { CircuitCardComponent } from './home/components/circuit-card/circuit-card.component';
 import { Sec2contentComponent } from './home/components/sec2content/sec2content.component';
+import { FormComponent } from './home/components/form/form.component';
+import { CheckboxModule } from 'primeng/checkbox';
+import { HttpClientModule } from '@angular/common/http';
+
+
 
 @NgModule({
   declarations: [
@@ -26,7 +31,9 @@ import { Sec2contentComponent } from './home/components/sec2content/sec2content.
     HeaderComponent,
     InfoScreenComponent,
     CircuitCardComponent,
-    Sec2contentComponent
+    Sec2contentComponent,
+    FormComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -37,7 +44,9 @@ import { Sec2contentComponent } from './home/components/sec2content/sec2content.
     MatSelectModule,
     FormsModule,
     ReactiveFormsModule,
-    SelectButtonModule
+    SelectButtonModule,
+    CheckboxModule,
+    HttpClientModule
 
   ],
   providers: [],

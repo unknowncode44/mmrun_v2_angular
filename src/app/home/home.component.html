@@ -35,33 +35,12 @@
                     <div id="regForm" class="register-form">
                         <div class="form-wrapper">
                             <div class="overlay"></div>
-                            <div class="form-content">
-                                <div class="form-title">
-                                    <h2>Formulario de inscripcion</h2>
-                                </div>
-                                <div class="form-section">
-                                    <h3>Elije un circuito</h3>
-                                </div>
-                                <div class="circ-field">
-                                    <select name="circ" id="circ">
-                                        <option *ngFor="let item of catPrices" value="item.name">{{item.name}}</option>
-                                    </select>
-                                </div>
-                                <div class="form-section">
-                                    <h3>Datos Personales</h3>
-                                </div>
-                               <form [formGroup]="formGroup">
-                                    <input type="text" placeholder="Nombre" formControlName="name">
-                                    <input type="text" placeholder="Apellido" formControlName="lastname">
-                                    <input type="email" placeholder="email@email.com" formControlName="email">
-                                    <select name="genre" id="genre">
-                                        <option value="Femenino">Femenino</option>
-                                        <option value="Masculino">Masculino</option>
-                                    </select>
-                                    <input type="text" placeholder="Fecha de Nacimiento" onblur="(this.type='text')" onfocus="(this.type='date')">
-                               </form>
+                            <div class="side-panel">
+                                <div class="side-img"></div>
                             </div>
-                            <div class="buttons"></div>
+                            <div class="form-content">
+                            <app-form></app-form>
+                        </div> 
                         </div>
                     </div>
                 </div>
@@ -69,8 +48,6 @@
 
 
         </div>
-        <router-outlet></router-outlet> 
-        
-        
     </mat-sidenav-content>
 </mat-sidenav-container>
+<router-outlet></router-outlet>

@@ -1,18 +1,20 @@
-<swiper-container slides-per-view="1" pagination="true" navigation="true">
-    <swiper-slide *ngFor="let _card of cardCat">
-        <div id="sec2" class="card">
-            <div class="title"><h2>{{_card.title}}</h2></div>
-            <div class="list">
-                <ul>
-                    <li><strong>Largada:</strong> <br>{{_card.largada}}</li>
-                    <li><strong>Kit Corredor:</strong><br> {{_card.kit_corredor}}</li>
-                    <li><strong>Categorias:</strong><br> {{_card.categorias}}</li>
-                    <li><strong>Circuito:</strong><br> {{_card.circuito}}</li>
-                </ul>
+<div class="swipper-wrapper">
+    <swiper-container slides-per-view="1" pagination="true" navigation="true">
+        <swiper-slide *ngFor="let _card of cardCat">
+            <div id="sec2" class="card">
+                <div class="title"><h2>{{_card.title}}</h2></div>
+                <div class="list">
+                    <ul>
+                        <li><strong>Largada:</strong> <br>{{_card.largada}}</li>
+                        <li><strong>Kit Corredor:</strong><br> {{_card.kit_corredor}}</li>
+                        <li><strong>Categorias:</strong><br> {{_card.categorias}}</li>
+                        <li><strong>Circuito:</strong><br> {{_card.circuito}}</li>
+                    </ul>
+                </div>
+                <div class="btn-container">
+                    <button (click)="goToForm('regForm')">Inscribirse</button>
+                </div>
             </div>
-            <div class="btn-container">
-                <button (click)="goToForm('regForm')">Inscribirse</button>
-            </div>
-        </div>
-    </swiper-slide>
-</swiper-container> 
+        </swiper-slide>
+    </swiper-container> 
+</div>

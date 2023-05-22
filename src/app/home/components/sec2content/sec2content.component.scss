@@ -49,6 +49,10 @@
         }
     }
 
+    .img {
+        display: none;
+    }
+
     .imaged {
         display: none;
     }
@@ -59,28 +63,49 @@
     .s2wrapper {
         min-height: 70vh;
         max-height: 80vh;
+        
     }
 }
 
 @media (min-width: 800px){
     .s2wrapper {
+        z-index: 999;
         min-height: 50vh;
         max-height: 70vh;
         min-width: 100%;
         display: flex;
         flex-direction: row;
-        padding: 48px 48px;
-        .contentd {
-            max-width: 50%;
+        padding: 8px 48px;
+        .stats {
+            height: 136px;
+            padding: 0px 48px;
+            .stat {
+            height: 132px;
+            width: 132px;
         }
-        .imaged {
-            display: flex;
-            position: relative;
-            transform: translateX(100px) translateY(-10px);
-            width: 50%;
+        }
+        
+        .contentd {
+            max-width: 60%;
+            padding: 32px 32px;
+        }
+
+        .img-c {
+            min-width: 40%;
+            width: 40%;
+            background-image: url(../../../../assets/images/MMR2022/png1.png);
+            background-position: start;
+            background-repeat: no-repeat;
+            transform: scale(1.6) translateX(-90px) translateY(80px);
+            opacity: 0.6;
+
+            .imaged {
+            position: absolute;
+            min-width: 800px;
             height: 100vh;
             clip-path: polygon(65% 53%, 100% 0, 100% 100%, 0% 100%);
             background: var(--secondary);
+        }
         }
             
         

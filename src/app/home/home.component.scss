@@ -98,7 +98,7 @@ mat-sidenav-container {
                     border-top: solid 2px #323232;
                     padding: 8px 16px;
                     width: 100%;
-                    height: 300vh;
+                    height: 350vh;
                     background-color: #323232;
                     .sec-categorias {
                         display: flex;
@@ -108,7 +108,7 @@ mat-sidenav-container {
                         clip-path: polygon(50% 9.72%, 0% 0%, 0% 93.2%, 30% 85.7%, 73.29% 87.71%, 100% 85.7%, 100% 5.95%);
                         background-color: var(--primary);
                         background-image: url('https://images.pexels.com/photos/235922/pexels-photo-235922.jpeg');
-                        background-size: auto 100%;
+                        background-size: cover;
                         background-repeat: no-repeat;
                         position: relative;
                         height: 100vh;
@@ -140,7 +140,7 @@ mat-sidenav-container {
                         background-size: cover;
                         background-position: center;
                         background-repeat: no-repeat;
-                        height: 100vh;
+                        height: 165vh;
                         width: 100%;
                         padding: 16px;
                         display: flex;
@@ -171,71 +171,7 @@ mat-sidenav-container {
                                 justify-content: start;
                                 width: 100%;
                                 height: 100%;
-                                .form-title {
-                                    margin: 16px 8px;
-                                    height: 60px;
-                                }
-                                .form-section {
-                                    width: 100%;
-                                    padding: 8px 8px;
-                                    margin: 2px 0px;
-                                    h3 {
-                                        text-align: center;
-                                        margin: 0;
-                                        text-transform: uppercase;
-                                        font-weight: 600;
-                                        color: var(--white);
-                                    }
-                                }
-                                .circ-field {
-                                    margin-top: 0.2rem;
-                                    width: 100%;
-                                    padding: 0px 32px;
-                                    height: 54px;
-                                    display: flex;
-                                    flex-direction: row;
-                                    justify-content: center;
-                                    select {
-                                        border-radius: 10px;
-                                        padding: 0px 8px;
-                                        width: 98%;
-                                        font-weight: 600;
-                                        color: var(--primary);
-                                        background: var(--secondary);
-                                    }
-                                }
-
-                                form {
-                                    display: flex;
-                                    flex-direction: column;
-                                    width: 100%;
-                                    padding: 8px 32px;
-                                    input {
-                                        margin: 4px;
-                                        height: 54px;
-                                        background: var(--secondary);
-                                        border: 2px solid var(--lighter);
-                                        border-radius: 10px;
-                                        padding: 0px 8px;
-                                        font-weight: 600;
-                                        color: var(--primary);
-                                    }
-                                    select {
-                                        margin: 4px 2px;
-                                        border-radius: 10px;
-                                        padding: 0px 8px;
-                                        height: 54px;
-                                        width: 98%;
-                                        font-weight: 600;
-                                        color: var(--primary);
-                                        background: var(--secondary);
-                                        option {
-                                            font-weight: 600;
-
-                                        }
-                                    }
-                                }
-                                
+                                border-radius: 0px 15px 15px 0px;  
                             }
                         }
             
@@ -245,6 +181,55 @@ mat-sidenav-container {
             }
 
         }        
+    }
+}
+
+
+@media (min-width: 375px) {
+    mat-sidenav-container {
+        mat-sidenav-content {
+            .parallax-wrapper {
+                .section-2 {
+                    .section2-content {
+                        height: 360vh;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 390px) {
+    mat-sidenav-container {
+        mat-sidenav-content {
+            .parallax-wrapper {
+                .section-2 {
+                    .section2-content {
+                        height: 310vh;
+                        .register-form {
+                            max-height: 125vh;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 410px) {
+    mat-sidenav-container {
+        mat-sidenav-content {
+            .parallax-wrapper {
+                .section-2 {
+                    .section2-content {
+                        height: 290vh;
+                        .register-form {
+                            max-height: 130vh;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -261,11 +246,10 @@ mat-sidenav-container {
                     h2 {
                         margin-top: 40px;
                     }
-        
                     .sec-categorias {
-                        transform: translateX(-20px);
+                        
                         background-size: cover;
-                        width: 102%;
+                       
                         .card-container {
                             width: 100%;
                             swiper-container {
@@ -273,7 +257,7 @@ mat-sidenav-container {
                                     display: flex;
                                     justify-content: center;
                                     .card {
-                                        width: 50%;
+                                        width: 100%;
                                         .title {
                                             h2 {
                                                 margin: 10px 0px;
@@ -290,11 +274,86 @@ mat-sidenav-container {
                             }
                         }
                     }
+
+                    .register-form {
+                        background-position: left;
+                        background-size: cover;
+                        .overlay {
+                            display: none;
+                        }
+                        .form-wrapper {
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: start;
+                            .side-panel {
+                                display: flex;
+                                z-index: 1999;
+                                padding: 0px 0px;
+                                flex-direction: column;
+                                height: 100%;
+                                width: 30%;
+                                background: var(--secondary);
+                                opacity: 0.85;
+                                border: 1px solid var(--lighter25);
+                                border-radius: 15px 0px 0px 15px;
+                                .side-img {
+                                    width: 100%;
+                                    height: 100%;
+                                    background-image: url(../../assets/images/MMR2022//png3.png);
+                                    background-repeat: no-repeat;
+                                    background-size: cover;
+                                    opacity: 0.75;
+                                }
+                            }
+                            .form-content {
+                                position: relative;
+                                right: 0;
+                                max-width: 70%;
+                                background: var(--primary);
+                                padding: 0px 5%;
+                                
+                            }
+
+                        }
+                    }
                 }
         
                 
             }
 
+        }
+    }
+}
+
+@media (min-width: 1440px) {
+    mat-sidenav-content {
+        .parallax-wrapper {
+            .section-2 {
+                .section2-content {
+                    max-height: 300vh;
+                    .register-form {
+                        height: 150vh;
+                        .form-wrapper {
+                            .side-panel {
+                                padding: 0px 0px;
+                                .side-img {
+                                    width: auto;
+                                    height: 100%;
+                                }
+                            }
+                            .form-content {
+                                position: relative;
+                                right: 0;
+                                max-width: 70%;
+                                background: var(--primary);
+                                padding: 0px 5%;
+                                
+                            }
+
+                        }
+                    }
+                }            
+            }
         }
     }
 }

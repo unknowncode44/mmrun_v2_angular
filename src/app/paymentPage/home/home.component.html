@@ -1,0 +1,57 @@
+<div class="wrapper">
+    <div class="card">
+        <div class="title">
+            <h2>Resumen de Inscripcion</h2>
+        </div>
+        <div class="details">
+            <div class="subtitle">
+                <h3 style="color: white">{{runner.circuito}}</h3>
+            </div>
+            <div class="subtitle">
+                <h3>Datos del corredor</h3>
+            </div>
+            <div class="corredor">
+                <ul>
+                    <li>Nombre:  {{runner.name}}</li>
+                    <li>Edad:    {{runner.edad}} Años</li>
+                    <li>DNI:     {{runner.dni}}</li>
+                    <li>Genero: {{runner.genero}}</li>
+                    <li>Email: {{runner.email}}</li>
+                </ul>
+            </div>
+            <div class="subtitle">
+                <h3>Datos de pago</h3>
+            </div>
+            <div class="pago">
+                <ul>
+                    <li>
+                        <div class="detail">Costo del circuito:</div>
+                        <div class="costo">$ 8,000</div>
+                    </li>
+                    <li>
+                        <div class="detail">Descuento Socio:</div>
+                        <div class="costo">-$ 800</div>
+                    </li>
+                    <li>
+                        <div class="detail">Otros Descuentos</div>
+                        <div class="costo">$ 0</div>
+                    </li>
+                    <br>
+                    <li><strong>
+                        <div class="detail">Total</div>
+                        <div class="total costo">$ 7,200</div>
+                    </strong></li>
+                </ul>
+            </div>
+
+            <div class="buttons">
+                <div class="volver">
+                    <button type="button">Volver</button>
+                </div>
+                <div class="pagar">
+                    <button type="button" (click)="createPayment()">Pagar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

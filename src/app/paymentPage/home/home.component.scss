@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,400;0,600;0,800;0,900;1,200;1,400;1,600;1,800;1,900&display=swap');
+
+
+
+
+.wrapper {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background: var(--secondary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px 16px;
+    
+    .card {
+        background-color: var(--primary);
+        width: 100%;
+        height: 90vh;
+        border-radius: 15px;
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        .title {
+            height: 80px;
+            width: 100%;
+            font-size: 3em;
+            border-radius: 15px 15px 0px 0px;
+            background: #323232;
+            display: flex;
+            justify-content: center;
+            h2 {
+                margin: auto;
+                font-weight: 800;
+                text-transform: uppercase;
+                font-style: italic;
+            }
+        }
+        .details {
+            width: 100%;
+            padding: 8px 0px;
+            .subtitle {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                color: var(--secondary);
+                h3 {
+                    font-size: 1.5em;
+                    font-weight: 800;
+                    text-transform: uppercase;
+                }
+            }
+            .corredor {
+                width: 100%;
+                background: #323232;
+                border-radius: 5px;
+                padding: 16px;
+                ul {
+                    list-style: none;
+                    font-size: 1.2em;
+                    font-weight: 600;
+                    li {
+                        margin: 4px 0px
+                    }
+                }
+            }
+            .pago {
+                width: 100%;
+                background: #323232;
+                border-radius: 5px;
+                padding: 16px;
+                ul {
+                    list-style: none;
+                    font-size: 1.2em;
+                    font-weight: 600;
+                    li {
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-between;
+                    } 
+                    li strong {
+                        font-size: 1.5em;
+                        width: 100%;
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-between;  
+                    } 
+                }
+            }
+            .buttons {
+                margin: 32px 0px;
+                width: 100%;
+                height: 100px;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-around;
+                .volver {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    button {
+                        height: 60px;
+                        width: 160px;
+                        border-radius: 8px;
+                        background: var(--primary);
+                        border: solid 2px var(--secondary);
+                        color: var(--secondary);
+                        font-size: 1.2em;
+                        font-weight: 600;
+                    }
+                    button:hover {
+                        background: var(--secondary);
+                        border: solid 2px var(--secondary);
+                        color: var(--primary);  
+                    }
+
+                }
+                .pagar {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    button {
+                        height: 60px;
+                        width: 160px;
+                        border-radius: 8px;
+                        background: var(--secondary);
+                        color: var(--primary);
+                        font-size: 1.2em;
+                        font-weight: 600;
+                    }
+                    button:hover {
+                        background: var(--primary);
+                        border: solid 2px var(--secondary);
+                        color: var(--secondary);  
+                    }
+                }
+            }
+
+        }
+    }
+}
+
+@media (min-width: 800px) {
+    .wrapper {
+        padding: 32px 15%
+    }
+}

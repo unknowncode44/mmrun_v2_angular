@@ -1,0 +1,67 @@
+
+    <div class="form-title">
+        <h2>Formulario de inscripcion</h2>
+    </div>
+    <div class="form-section">
+        <h3>Elije un circuito</h3>
+    </div>
+    <div class="circ-field" >
+        <form [formGroup]="circGroup">
+            <select name="circ" id="circ" formControlName="catPriceControl">
+                <option value="null">--</option>
+                <option *ngFor="let item of catPrices" (value)="item.name">{{item.name}}</option>
+            </select>
+        </form>
+    </div>
+    <div class="form-section">
+        <h3>Datos Personales</h3>
+    </div>
+   <swiper-container>
+    <swiper-slide>
+        <form [formGroup]="formGroup">
+            <input type="text" placeholder="Nombre" formControlName="name">
+            <input type="text" placeholder="Apellido" formControlName="lastname">
+            <input type="email" placeholder="email@email.com" formControlName="email">
+            <input type="number" placeholder="DNI" formControlName="dni">
+            <select name="genre" id="genre" placeholder="Genero" selectedIndex="0" formControlName="genero">
+                <option value="Femenino">Femenino</option>
+                <option value="Masculino">Masculino</option>
+            </select>
+            <select name="talle" id="talle" selectedIndex="0" formControlName="talle">
+                <option value="talle_s">Camiseta Talle S</option>
+                <option value="talle_m">Camiseta Talle M</option>
+                <option value="talle_l">Camiseta Talle L</option>
+                <option value="talle_xl">Camiseta Talle XL</option>
+                <option value="talle_xxl">Camiseta Talle XXL</option>
+            </select>
+            <div class="form-section">
+                <h3>Fecha de Nacimiento</h3>
+            </div>
+            <input type="date" class="f_nac" formControlName="fecha_nac" placeholder="Fecha de Nacimiento">
+            <div class="discounts">
+                <div class="partner">
+                    <p>Soy Socio del Club MariMenuco</p>
+                </div>
+                <div class="checkbox">
+                    <p-checkbox [binary]="true" inputId="mcp" (click)="enableMCP()"></p-checkbox>
+                </div>
+            </div>
+            <input type="text" id="mClubPartnerStr" placeholder="Numero de Socio" formControlName="mClubPartnerStr">
+            <div class="discounts">
+                <div class="partner">
+                    <p>Tengo un codigo de descuento</p>
+                </div>
+                <div class="checkbox">
+                    <p-checkbox [binary]="true" inputId="dc" (click)="enableDC()"></p-checkbox>
+                </div>
+            </div>
+            <input type="text" id="discCodeStr" placeholder="Codigo de descuento" formControlName="discCodeStr">
+            <div class="buttons">
+                <button id="next" class="next" type="button" (click)="goToPayment()">Siguiente</button>
+            </div>
+       </form>
+    </swiper-slide>
+   </swiper-container>
+
+   
+

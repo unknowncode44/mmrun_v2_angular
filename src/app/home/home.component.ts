@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { SharedService } from './services/shared/sared.service';
 import { MenuItem } from './mock/menu-item.model';
 import { menuItems } from './mock/menu-sections';
@@ -12,7 +12,8 @@ import { CategoryPrices } from 'src/app/home/mock/cat-prices.model';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class HomeComponent {
 
