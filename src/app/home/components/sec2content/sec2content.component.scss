@@ -57,6 +57,10 @@
         display: none;
     }
 
+    .img-c {
+        display: none;
+    }
+
 }
 
 @media (min-height: 800px){
@@ -91,21 +95,31 @@
         }
 
         .img-c {
+            display: block;
             min-width: 40%;
             width: 40%;
-            background-image: url(../../../../assets/images/MMR2022/png1.png);
-            background-position: start;
-            background-repeat: no-repeat;
-            transform: scale(1.6) translateX(-90px) translateY(80px);
+            transform: scale(1.1) translateX(90px) translateY(40px);
             opacity: 0.6;
+            .picture {
+                position: relative;
+                z-index: 2999;
+                width: 100%;
+                height: 600px;
+                transform: translateX(-100px);
+                background-image: url('../../../../assets/images/MMR2022/png1.png');
+                background-size: contain;
+                background-repeat: no-repeat;
+            }
+            .img-overlay {
+                position: absolute;
+                width: 80%;
+                height: 100%;
+                clip-path: polygon(25% 25%, 100% 0%, 100% 100%, 0% 100%);
+                background-color: #00FABA;
+                transform: scale(1.8) translateY(-300px) translateX(50px);
+            }
 
-            .imaged {
-            position: absolute;
-            min-width: 800px;
-            height: 100vh;
-            clip-path: polygon(65% 53%, 100% 0, 100% 100%, 0% 100%);
-            background: var(--secondary);
-        }
+            
         }
             
         

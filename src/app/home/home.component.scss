@@ -185,7 +185,7 @@ mat-sidenav-container {
 }
 
 
-@media (min-width: 375px) {
+@media (min-width: 360px) {
     mat-sidenav-container {
         mat-sidenav-content {
             .parallax-wrapper {
@@ -216,6 +216,7 @@ mat-sidenav-container {
     }
 }
 
+
 @media (min-width: 410px) {
     mat-sidenav-container {
         mat-sidenav-content {
@@ -224,7 +225,7 @@ mat-sidenav-container {
                     .section2-content {
                         height: 290vh;
                         .register-form {
-                            max-height: 130vh;
+                            max-height: 120vh;
                         }
                     }
                 }
@@ -232,6 +233,44 @@ mat-sidenav-container {
         }
     }
 }
+
+@media (min-width: 413px) and (max-width: 475px) {
+    mat-sidenav-container {
+        mat-sidenav-content {
+            .parallax-wrapper {
+                .section-2 {
+                    .section2-content {
+                        height: 290vh;
+                        .register-form {
+                            max-height: 150vh;
+                        }
+                        
+                    }
+                }
+            }
+        }
+    } 
+}
+
+@media (min-width: 413px) and (max-width: 475px) {
+    mat-sidenav-container {
+        mat-sidenav-content {
+            .parallax-wrapper {
+                .section-2 {
+                    .section2-content {
+                        height: 290vh;
+                        .register-form {
+                            max-height: 150vh;
+                        }
+                        
+                    }
+                }
+            }
+        }
+    } 
+}
+
+
 
 @media (min-width: 800px) {
     mat-sidenav-content {
@@ -358,4 +397,21 @@ mat-sidenav-container {
     }
 }
 
+@media (min-width: 1700px) {
+    mat-sidenav-container {
+        mat-sidenav-content {
+            .parallax-wrapper {
+                .section-2 {
+                    .section2-content {
+                        height: 290vh;
+                        .register-form {
+                            max-height: 140vh;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+}
 
