@@ -20,6 +20,13 @@ import { Sec2contentComponent } from './home/components/sec2content/sec2content.
 import { FormComponent } from './home/components/form/form.component';
 import { CheckboxModule } from 'primeng/checkbox';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './login/components/login/login.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { RunnersComponent } from './dashboard/runners/runners.component';
+import { SponsorsComponent } from './dashboard/sponsors/sponsors.component';
+import { UiComponent } from './dashboard/ui/ui.component';
+import { CategoriesComponent } from './dashboard/categories/categories.component';
+import { PricesComponent } from './dashboard/prices/prices.component';
 
 
 
@@ -33,6 +40,13 @@ import { HttpClientModule } from '@angular/common/http';
     CircuitCardComponent,
     Sec2contentComponent,
     FormComponent,
+    LoginComponent,
+    DashboardComponent,
+    RunnersComponent,
+    SponsorsComponent,
+    UiComponent,
+    CategoriesComponent,
+    PricesComponent,
     
   ],
   imports: [

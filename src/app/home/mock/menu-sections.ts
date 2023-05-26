@@ -19,6 +19,6 @@ export const menuItems: MenuItem[]  = [
     {
         icon: 'enter-outline',
         title: 'Ingreso',
-        route: ''
+        route: 'login'
     }
 ] 

@@ -2,6 +2,7 @@ import { Component, Output } from '@angular/core';
 import { SharedService } from '../../services/shared/sared.service';
 
 
+
 @Component({
   selector: 'app-toolbar',
   templateUrl: './toolbar.component.html',
@@ -14,7 +15,7 @@ export class ToolbarComponent {
 
   @Output() opened: boolean = false
 
-  constructor(private sServ: SharedService ){
+  constructor(private sServ: SharedService){
   }
 
   onToggle() {
@@ -23,6 +24,8 @@ export class ToolbarComponent {
     console.log(this.opened);
         
   }
+
+
 
 
 }

@@ -1,0 +1,16 @@
+<div class="wrapper">
+    <mat-sidenav-container>
+        <mat-sidenav mode="side" [(opened)]="opened">
+            Menu
+        </mat-sidenav>
+        <mat-sidenav-content>
+            <div class="content-wrapper">
+                <div class="navbar">
+                    <div class="title" (click)="toggleSidebar()">
+                        <ion-icon name="menu" slot="start"></ion-icon>
+                    </div>
+                </div>
+            </div>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>

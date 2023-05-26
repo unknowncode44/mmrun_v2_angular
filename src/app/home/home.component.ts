@@ -7,6 +7,7 @@ import { cards } from 'src/app/home/mock/categories.mock';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CategoriesPrices } from 'src/app/home/mock/cat-prices.mock';
 import { CategoryPrices } from 'src/app/home/mock/cat-prices.model';
+import { Router} from '@angular/router'
 
 
 @Component({
@@ -26,7 +27,7 @@ export class HomeComponent {
   catPrices: CategoryPrices[] = CategoriesPrices
  
 
-  constructor(private sServ: SharedService){
+  constructor(private sServ: SharedService, private router: Router){
 
   }
 
@@ -43,9 +44,17 @@ export class HomeComponent {
   onSelect(id?: string){
     this.sServ.setValue(false)
     // TODO: pasar parametro
-    if (id) {
-      this.goToForm(id)
+
+    if (id === 'login') {
+      this.router.navigate(['/login'])
+    } else {
+      if (id) {
+        this.goToForm(id)
+      }
     }
+
+
+    
   }
 
   goToForm(id: string) : void{
