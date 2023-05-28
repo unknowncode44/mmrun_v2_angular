@@ -9,6 +9,8 @@ import { CategoriesPrices } from 'src/app/home/mock/cat-prices.mock';
 import { CategoryPrices } from 'src/app/home/mock/cat-prices.model';
 import { Router} from '@angular/router'
 
+import { UiService } from '../dashboard/ui/services/ui.service';
+
 
 @Component({
   selector: 'app-home',
@@ -25,9 +27,18 @@ export class HomeComponent {
   
   cardCat: Category[] = cards
   catPrices: CategoryPrices[] = CategoriesPrices
+
+  uiList: any[] = [] 
+
+  tituloEncabezado = ''
  
 
-  constructor(private sServ: SharedService, private router: Router){
+  constructor(
+    private sServ: SharedService, 
+    private router: Router,
+    private uiService: UiService
+    
+    ){
 
   }
 
@@ -39,6 +50,21 @@ export class HomeComponent {
       lastname: new FormControl<string>(null, Validators.required),
       email: new FormControl<string>(null, Validators.required)
     })
+
+    this.uiService.getAll().subscribe(
+      (data) => {
+        this.uiList = data
+      }
+    )
+    for (let uiElement = 0; uiElement < this.uiList.length; uiElement++) {
+      const e = this.uiList[uiElement];
+      console.log(e);
+      
+    }
+
+    console.log(this.tituloEncabezado);
+    
+    
   }
 
   onSelect(id?: string){

@@ -1,0 +1,125 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    height: 100%;
+    width: 100%;
+    .title {
+        width: 100%;
+        height: 60px;
+        padding: 4px 16px;
+        color: var(--primary);
+        font-size: 2.4em;
+        font-weight: 800;
+        text-transform: uppercase;
+    }
+    .content {
+        height: calc(100% - 60px);
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        .utilities {
+            width: 100%;
+            height: 80px;
+            display: flex;
+            flex-direction: row;
+            justify-content: start;
+            .totals, .add-new {
+                width: 50%;
+                height: 65px;
+                border-radius: 16px;
+                background: var(--primary);
+                margin: 8px;
+                color: var(--white);
+                display: flex;
+                flex-direction: row;
+                font-size: 1.2em;
+                font-weight: 600;
+                justify-content: center;
+                .icon, .total {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                }
+                
+            }
+
+        }
+
+        .table-container {
+            height: calc(100% - 80px);
+            position: relative;
+            .table {
+                max-height: 100%;
+                overflow: auto;
+            }
+        }
+    }
+}
+
+.actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 8px 10%;
+    div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0px 15%;
+        label {
+            width: 100%;
+            text-align: start;
+        }
+        input{
+            height: 54px;
+            width: 100%;
+            border-radius: 8px;
+            background: var(--secondary);
+            color: var(--primary);
+            font-weight: 600;
+            padding: 0px 8px;
+            
+        }
+        textarea {
+            border-radius: 8px;
+            background: var(--secondary);
+            color: var(--primary);
+            font-weight: 600;
+            padding: 8px 8px;
+        }
+        button {
+            width: 80%;
+            height: 54px;
+            background: var(--primary);
+            margin: 8px 0px;
+            font-weight: 600;
+            font-size: 1.2em;
+        }
+    }
+}
+
+@media (min-width: 800px) {
+    .wrapper {
+        .content {
+            .utilities {
+                .totals, .add-new {
+                    width: 15%;
+                    font-size: 1.5em;
+                    .icon {
+                        width: 25%;
+                    }
+                }
+    
+            }
+        }
+    }
+
+}

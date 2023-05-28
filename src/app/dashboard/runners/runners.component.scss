@@ -60,7 +60,7 @@
 .actions {
     display: flex;
     flex-direction: row;
-    
+    justify-content: center;
 }
 
 @media (min-width: 800px) {

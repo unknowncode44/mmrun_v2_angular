@@ -32,8 +32,11 @@ import { PricesComponent } from './dashboard/prices/prices.component';
 
 import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
-
-
+import { DialogModule } from 'primeng/dialog';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { ButtonModule } from 'primeng/button';
+import { ToastModule } from 'primeng/toast';
 
 
 
@@ -69,7 +72,12 @@ import { TagModule } from 'primeng/tag';
     CheckboxModule,
     HttpClientModule,
     TableModule,
-    TagModule
+    TagModule,
+    DialogModule,
+    DynamicDialogModule,
+    InputTextareaModule,
+    ButtonModule,
+    ToastModule
 
   ],
   providers: [CookieService],

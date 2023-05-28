@@ -53,8 +53,6 @@ export class DashboardComponent {
     if (screenWidth > 450) {
       this.opened = false
     }
-
-    this.navigateTo('dashboard/runners')
   }
 
 
@@ -71,7 +69,10 @@ export class DashboardComponent {
   }
 
   navigateTo(route: string){ // usa como parametro la ruta del componente
+
     this.router.navigateByUrl(route)
+
+    this.toggleSidebar()
   }
 
 }

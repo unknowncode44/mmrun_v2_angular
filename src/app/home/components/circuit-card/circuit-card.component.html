@@ -1,13 +1,13 @@
 <div class="swipper-wrapper">
-    <swiper-container slides-per-view="1" pagination="true" navigation="true">
-        <swiper-slide *ngFor="let _card of cardCat">
+    <swiper-container *ngIf="!isLoading" id="swiper" slides-per-view="1" pagination="true" navigation="true">
+        <swiper-slide  *ngFor="let _card of categories">
             <div id="sec2" class="card">
                 <div class="title"><h2>{{_card.title}}</h2></div>
                 <div class="list">
                     <ul>
                         <li><strong>Largada:</strong> <br>{{_card.largada}}</li>
                         <li><strong>Kit Corredor:</strong><br> {{_card.kit_corredor}}</li>
-                        <li><strong>Categorias:</strong><br> {{_card.categorias}}</li>
+                        <li><strong>Categorias:</strong><br> {{_card.categories}}</li>
                         <li><strong>Circuito:</strong><br> {{_card.circuito}}</li>
                     </ul>
                 </div>

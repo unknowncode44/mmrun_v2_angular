@@ -2,11 +2,97 @@
     <div class="title">Circuitos</div>
     <div class="content">
         <div class="utilities">
-            <div class="totals"></div>
-            <div class="add-new"></div>
+            <div class="totals">
+                <div class="icon"><ion-icon name="analytics"></ion-icon></div>
+                <div class="total">{{categoriesQty}}</div>
+            </div>
+            <div class="add-new" (click)="showNewCategoryDialog()">
+                <div class="icon"><ion-icon name="add"></ion-icon></div>
+                <div class="total">Agregar</div>
+            </div>
         </div>
         <div class="table-container">
-            <div class="table"></div>
+            <p-toast position="top-right" key="tr" severity></p-toast>
+            <div class="table">
+                <div class="card">
+                    <p-table
+                    #ui1
+                    [value]="categoriesList"
+                    responsiveLayout="stack"
+                    [breakpoint]="'800px'"
+                    [tableStyle]="{'min-width': '20rem'}">
+                        <ng-template 
+                        pTemplate="header" let-columns>
+                            <tr>
+                                <th>ID</th>
+                                <th>Precio</th>
+                                <th>Nombre</th>
+                                <th>Largada</th>
+                                <th>Kit Corredor</th>
+                                <th>Categorias</th>
+                                <th>Circuito</th>
+                                <th>Acciones</th>
+                            </tr>    
+                        </ng-template>
+
+                        <ng-template pTemplate="body" let-categories let-columns="columns">
+                            <tr>
+                                <td><span class="p-column-title">ID</span>{{categories.id}}         </td>
+                                <td><span class="p-column-title">Precio</span>{{categories.precio}}   </td>
+                                <td><span class="p-column-title">Nombre</span>{{categories.title}}   </td>
+                                <td><span class="p-column-title">Largada</span>{{categories.largada}}   </td>
+                                <td><span class="p-column-title">Kit Corredor</span>{{categories.kit_corredor}}   </td>
+                                <td><span class="p-column-title">Categorias</span>{{categories.categories}}   </td>
+                                <td><span class="p-column-title">Circuito</span>{{categories.circuito}}   </td>
+                                <td>
+                                    <span class="p-column-title">Acciones</span>
+                                    <div class="actions">
+                                        <div class="update" (click)="showDialog(categories.id.toString())"><ion-icon style="font-size: 1.5em; margin: 0px 4px; cursor: pointer" color="success" name="create"></ion-icon></div>
+                                        <div class="delete"><ion-icon style="font-size: 1.5em; margin: 0px 4px; cursor: pointer" color="danger" name="trash" (click)="delete(categories.id)"></ion-icon></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            
+                        </ng-template>
+                    </p-table>
+
+                    <p-dialog header="Nuevo Circuito" [(visible)]="newFormVisible" [style]="{width: '60vw'}">
+                        <ng-template pTemplate="body">
+                            <form [formGroup]="categoriesForm" (ngSubmit)="saveChanges()">
+                                <div>
+                                    <label for="precio">Precio</label>
+                                    <input type="number" id="precio" formControlName="precio">
+                                </div>
+                                <div>
+                                    <label for="title">Nombre</label>
+                                    <input type="text" id="title" formControlName="title">
+                                </div>
+                                <div>
+                                    <label for="largada">Largada</label>
+                                    <input type="text" id="largada" formControlName="largada">
+                                </div>
+                                <div>
+                                    <label for="kit_corredor">Kit Corredor</label>
+                                    <textarea rows="4" cols="60" id="kit_corredor" pInputTextarea formControlName="kit_corredor"></textarea>
+                                </div>
+                                <div>
+                                    <label for="cats">Categorias</label>
+                                    <textarea rows="5" cols="60" id="cats" pInputTextarea formControlName="categorias"></textarea>
+                                </div>
+                                <div>
+                                    <label for="circuito">Circuito</label>
+                                    <input type="text" id="circuito" formControlName="circuito">
+                                </div>
+                                <div>
+                                    <button type="submit" [disabled]="categoriesForm.invalid">{{buttonText}}</button>
+                                </div>
+                            </form>
+                        </ng-template>
+                    
+                    </p-dialog>
+
+                </div>
+            </div>
         </div>
     </div>
 </div>
