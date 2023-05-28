@@ -4,6 +4,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import {MatFormFieldModule} from '@angular/material/form-field';
 
+import { CookieService } from 'ngx-cookie-service';
+
 
 import {MatSelectModule} from '@angular/material/select';
 
@@ -27,6 +29,11 @@ import { SponsorsComponent } from './dashboard/sponsors/sponsors.component';
 import { UiComponent } from './dashboard/ui/ui.component';
 import { CategoriesComponent } from './dashboard/categories/categories.component';
 import { PricesComponent } from './dashboard/prices/prices.component';
+
+import { TableModule } from 'primeng/table';
+import { TagModule } from 'primeng/tag';
+
+
 
 
 
@@ -60,10 +67,12 @@ import { PricesComponent } from './dashboard/prices/prices.component';
     ReactiveFormsModule,
     SelectButtonModule,
     CheckboxModule,
-    HttpClientModule
+    HttpClientModule,
+    TableModule,
+    TagModule
 
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

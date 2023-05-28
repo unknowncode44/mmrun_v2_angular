@@ -1,1 +1,76 @@
-<p>runners works!</p>
+<div class="wrapper">
+    <div class="title">Corredores</div>
+    <div class="content">
+        <div class="utilities">
+            <div class="totals">
+                <div class="icon"><ion-icon name="walk"></ion-icon></div>
+                <div class="total">{{runnersqty}}</div>
+            </div>
+            <div class="add-new">
+                <div class="icon"><ion-icon name="add"></ion-icon></div>
+                <div class="total">Agregar</div>
+            </div>
+        </div>
+        <div class="table-container">
+            <div class="table">
+                <div class="card">
+                    <p-table 
+                    #dt1
+                    [value]="runnerMock"
+                    dataKey="name" 
+                    responsiveLayout="stack" 
+                    [breakpoint]="'800px'"
+                    [tableStyle]="{'min-width': '20rem'}"
+                    [globalFilterFields]="['name']"
+                    >
+                        <ng-template pTemplate="caption">
+                            <div style="display: flex; flex-direction: row-reverse">
+                                <span style="display: flex; flex-direction: row-reverse">
+                                    <input pInputText style="max-width: 80%; height: 35px" type="text" placeholder="Buscar Nombre">
+                                    <ion-icon style="margin: auto 4px" name="search"></ion-icon>
+                                </span>
+                            </div>
+                        </ng-template>
+                        
+                        <ng-template pTemplate="header" let-columns>
+                            <tr>
+                                <th># Corredor</th>
+                                <th>Nombre</th>
+                                <th>Email</th>
+                                <th>Edad</th>
+                                <th>DNI</th>
+                                <th>Fecha Nac</th>
+                                <th>Genero</th>
+                                <th>Talle</th>
+                                <th>Circuito</th>
+                                <th>Socio</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </ng-template>
+
+                        <ng-template pTemplate="body" let-runner let-columns="columns">
+                            <tr>
+                                <td><span class="p-column-title"># Corredor</span>{{runner.runnerNumber}}</td>
+                                <td><span class="p-column-title">Nombre</span>{{runner.name}}</td>
+                                <td><span class="p-column-title">Email</span>{{runner.email}}</td>
+                                <td><span class="p-column-title">Edad</span>{{runner.runnerAge}}</td>
+                                <td><span class="p-column-title">DNI</span>{{runner.dni}}</td>
+                                <td><span class="p-column-title">Fecha Nac</span>{{runner.runnerBirthDate}}</td>
+                                <td><span class="p-column-title">Genero</span>{{runner.runnerGenre}}</td>
+                                <td><span class="p-column-title">Talle</span>{{runner.tshirtSize}}</td>
+                                <td><span class="p-column-title">Circuito</span><strong>{{runner.catValue}}</strong></td>
+                                <td><span class="p-column-title">Socio</span>{{runner.partnerID}}</td>
+                                <td><span class="p-column-title">Estado</span><p-tag [value]="runner.status" [severity]="getSeverity(runner.status)"></p-tag></td>
+                                <td><span class="p-column-title">Acciones</span><ion-icon style="font-size: 1.5em;" color="danger" name="trash"></ion-icon></td>
+                            </tr>
+                        </ng-template>
+                        
+                        
+                    </p-table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

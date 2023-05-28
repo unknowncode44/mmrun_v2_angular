@@ -4,8 +4,57 @@
     background: var(--secondary);
     mat-sidenav-container {
         mat-sidenav {
-            background: var(--secondary);
+            background: var(--lighter25);
             width: 300px;
+            border-radius: 8px;
+            .logo-container {
+                border-radius: 8px;
+            }
+            .items {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: start;
+                padding: 32px 8px;
+                .item {
+                    margin: 4px 0px;
+                    display: flex;
+                    flex-direction: row;
+                    width: 100%;
+                    height: 40px;
+                    background: var(--secondary);
+                    border-radius: 8px;
+                    padding: 8px; 
+                    color: var(--primary);
+                    font-weight: 600;
+                    .icon {
+                        height: 100%;
+                        width: 20%;
+                        align-items: center;
+                        text-align: center;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        ion-icon {
+                            width: 80%;
+                            height: 80%;
+                        }
+                    }
+                    .item-name {
+                        align-items: center;
+                        width: 75%;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: start;
+                        text-align: start;
+                    }
+
+                }
+                .item:hover {
+                    transform: scale(1.05);
+                }
+            }
         }
         mat-sidenav-content {
             background: var(--lighter25);
@@ -32,6 +81,18 @@
                         }
                     }
 
+                }
+                .content {
+                    height: 90%;
+                    width: 100%;
+                    padding: 16px;
+                    .panel {
+                        width: 100%;
+                        height: 100%;
+                        background: var(--secondary);
+                        border-radius: 8px;
+                        padding: 16px;
+                    }
                 }
             }
         }

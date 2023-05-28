@@ -1,1 +1,52 @@
-<p>ui works!</p>
+<div class="wrapper">
+    <div class="title">Diseño</div>
+    <div class="content">
+        <div class="utilities">
+            <div class="totals"></div>
+            <div class="add-new"></div>
+        </div>
+        <div class="table-container">
+            <div class="table">
+                <div class="card">
+                    <p-table
+                    #ui1
+                    [value]="uiList"
+                    responsiveLayout="stack"
+                    [breakpoint]="'800px'"
+                    [tableStyle]="{'min-width': '20rem'}">
+                        <ng-template 
+                        pTemplate="header" let-columns>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Texto</th>
+                                <th>Activo</th>
+                                <th>Acciones</th>
+                            </tr>    
+                        </ng-template>
+
+                        <ng-template pTemplate="body" let-ui let-columns="columns">
+                            <tr>
+                                <td><span class="p-column-title">ID</span>{{ui.id}}         </td>
+                                <td><span class="p-column-title">Nombre</span>{{ui.name}}   </td>
+                                <td><span class="p-column-title">Texto</span>{{ui.item}}    </td>
+                                <td><span class="p-column-title">Activo</span>{{ui.active}} </td>
+                                <td>
+                                    <span class="p-column-title">Acciones</span>
+                                    <div class="actions">
+                                        <div class="update"><ion-icon color="success" name="create"></ion-icon></div>
+                                        <div class="delete"><ion-icon color="danger" name="trash"></ion-icon></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            
+                        </ng-template>
+                        
+                    
+
+                    </p-table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

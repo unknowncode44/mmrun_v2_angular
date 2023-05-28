@@ -1,7 +1,15 @@
 <div class="wrapper">
     <mat-sidenav-container>
         <mat-sidenav mode="side" [(opened)]="opened">
-            Menu
+            <div class="logo-container">
+                <img src="../../assets/images/MMR2022/MMR-Isotipo-Negativo.png" alt="">
+            </div>
+            <div class="items">
+                <div class="item" *ngFor="let item of menuItems" (click)="navigateTo(item.route)">
+                    <div class="icon"><ion-icon name="{{item.icon}}"></ion-icon></div>
+                    <div class="item-name">{{item.name}}</div>
+                </div>
+            </div>
         </mat-sidenav>
         <mat-sidenav-content>
             <div class="content-wrapper">
@@ -10,7 +18,14 @@
                         <ion-icon name="menu" slot="start"></ion-icon>
                     </div>
                 </div>
+
+                <div class="content">
+                    <div class="panel">
+                        <router-outlet></router-outlet>
+                    </div>
+                </div>
             </div>
+            
         </mat-sidenav-content>
     </mat-sidenav-container>
 </div>

@@ -9,10 +9,10 @@
             <h3>Ingresa con tus datos</h3>
         </div>
         <div class="form-container">
-            <form action="submit" (ngSubmit)="goToDashboard()">
-                <input type="text" placeholder="Usuario">
-                <input type="password" placeholder="Contrasena">
-                <button type="submit">Ingresar</button>
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <input type="text" id="username" formControlName="username" placeholder="Usuario">
+                <input type="password" id="password" formControlName="password" placeholder="Contraseña">
+                <button type="submit" [disabled]="loginForm.invalid">Ingresar</button>
             </form>
         </div>
     </div>
