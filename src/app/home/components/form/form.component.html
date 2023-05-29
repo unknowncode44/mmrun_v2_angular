@@ -9,7 +9,7 @@
         <form [formGroup]="circGroup">
             <select name="circ" id="circ" formControlName="catPriceControl">
                 <option value="null">--</option>
-                <option *ngFor="let item of catPrices" (value)="item.name">{{item.name}}</option>
+                <option *ngFor="let item of catPrices2" (value)="item.name">{{item.name}}</option>
             </select>
         </form>
     </div>

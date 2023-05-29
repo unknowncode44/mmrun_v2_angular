@@ -3,7 +3,11 @@ import { CategoriesPrices } from 'src/app/home/mock/cat-prices.mock';
 import { CategoryPrices } from 'src/app/home/mock/cat-prices.model';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
+import { CategoriesService } from 'src/app/dashboard/categories/services/categories.service';
+
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import * as e from 'express';
 
 
 @Component({
@@ -14,15 +18,21 @@ import { Router } from '@angular/router';
 })
 export class FormComponent implements OnInit{
 
-  constructor(private router: Router){}
+  constructor(
+    private router: Router,
+    private categoriesService: CategoriesService
+    ){}
 
 
   catPrices: CategoryPrices[] = CategoriesPrices
+  catPrices2: CategoryPrices[] = []
   formGroup: FormGroup
   circGroup: FormGroup
 
   mClubPartner: boolean = false
   discountCode: boolean = false
+
+  categories = new Observable<any[]>
 
 
 
@@ -30,6 +40,22 @@ export class FormComponent implements OnInit{
     this.circGroup = new FormGroup({
       catPriceControl: new FormControl<string>(null, Validators.required),
     })
+
+    this.categories = this.categoriesService.getAll()
+
+    this.categories.subscribe(
+      (data) => {
+        for (let i = 0; i < data.length; i++) {
+          const e = data[i];
+          let section = `${e.title}, $ ${e.precio}`
+
+          let catPri: CategoryPrices = {name: section, price: e.precio}
+
+          this.catPrices2.push(catPri)
+          
+        }
+      }
+    )
 
     this.formGroup = new FormGroup({
       name: new FormControl<string>(null, Validators.required),

@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class UiService {
 
-  uiUrl: string = 'http://localhost:3040/ui'
+  uiUrl: string = 'http://31.187.76.251:3040/ui'
 
   constructor(public http: HttpClient) { }
 
