@@ -39,14 +39,57 @@
                                 <div class="side-img"></div>
                             </div>
                             <div class="form-content">
-                            <app-form></app-form>
-                        </div> 
+                                <app-form></app-form>
+                            </div> 
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="resources">
+                <div class="r-content">
+                    <h2>Descargas</h2>
+                    <ul>
+                        <li *ngFor="let document of resources">
+                            <div class="file-container">
+                                <a [href]="document.url" target="_blank" rel="noopener noreferrer">
+                                    <div class="icon"><ion-icon name="document-outline"></ion-icon></div>
+                                    <div class="file-name">{{document.title}}</div>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="side-pic"></div>
+            </div>
 
-
+            <div class="sponsors">
+                <div class="overlay"></div>
+                
+                <div class="swiper-sponsors">
+                    <h2>Sponsors</h2>
+                    <div class="swiper-container0">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide" *ngFor="let url of sponsors1">
+                                <div class="sponsor-logo">
+                                    <img src="{{url}}" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>     
+                </div>
+                <div class="swiper-sponsors">
+                    <h2>Acompañan</h2>
+                    <div class="swiper-container1">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide" *ngFor="let url of sponsors2">
+                                <div class="sponsor-logo">
+                                    <img src="{{url}}" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>          
+            </div>
         </div>
     </mat-sidenav-content>
 </mat-sidenav-container>

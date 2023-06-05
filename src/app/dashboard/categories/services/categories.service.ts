@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class CategoriesService {
 
-  categoriesUrl: string = 'http://31.187.76.251:3040/categories'
+  categoriesUrl: string = 'http://localhost:3040/categories'
 
   constructor(private http: HttpClient) {
 

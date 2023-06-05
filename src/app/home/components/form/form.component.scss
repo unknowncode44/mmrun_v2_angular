@@ -135,6 +135,9 @@
 
 
 @media (min-width: 800px) { 
+    #regForm {
+        max-height: 120vh;
+    }
     .form-title {
         h2 {
             font-size: 48px;
@@ -144,6 +147,11 @@
         h3 {
             font-style: italic;
         }
+        
+    }
+
+    swiper-container {
+        height: 75% !important;
     }
     .circ-field{
         form {
@@ -160,5 +168,11 @@
         }
         
         
+    }
+}
+
+@media (min-height: 500px) and (max-height: 666px){
+    swiper-container {
+        height: 100% !important;
     }
 }

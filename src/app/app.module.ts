@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import {MatFormFieldModule} from '@angular/material/form-field';
 
+
 import { CookieService } from 'ngx-cookie-service';
 
 
@@ -77,9 +78,10 @@ import { ToastModule } from 'primeng/toast';
     DynamicDialogModule,
     InputTextareaModule,
     ButtonModule,
-    ToastModule
-
+    ToastModule,
   ],
+
+
   providers: [CookieService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

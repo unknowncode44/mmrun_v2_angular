@@ -142,6 +142,64 @@
 
 @media (min-width: 800px) {
     .wrapper {
-        padding: 32px 15%
+        padding: 8px 10%;
+        .details {
+            .buttons {
+                margin: 0px 0px !important;
+                max-height: 50px;
+                button {
+                    margin: 8px 0px;
+                    max-height: 40px
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 360px) and (max-width: 389px) {
+    .wrapper {
+        .card {
+            .title {
+                height: 30px;
+                padding: 4px 0px;
+                h2 {
+                    font-size: 0.45em
+                }
+            }
+            .details {
+                .subtitle {
+                    height: 30px;
+                    h3 {
+                        margin: auto 0px;
+                        font-size: 1.2em;
+                    }
+                }
+                .corredor {
+                    padding: 8px;
+                    ul {
+                        li {
+                            font-size: 0.8em;
+                        }
+                    }
+                }
+                .pago {
+                    padding: 8px;
+                    ul {
+                        li {
+                            font-size: 0.8em;
+                        }
+                    }
+                }
+                .buttons {
+                    margin: 16px 0px;
+                    .volver, .pagar {
+                        max-height: 50px;
+                        button {
+                            max-height: 40px;
+                        }
+                    }
+                }
+            }
+        }
     }
 }

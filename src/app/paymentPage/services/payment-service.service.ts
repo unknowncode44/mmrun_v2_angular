@@ -9,7 +9,7 @@ export class PaymentServiceService {
 
   constructor(private http: HttpClient) { }
 
-  apiURL: string = 'http://localhost:3000/mercadopago/create-preference'
+  apiURL: string = 'http://localhost:3040/mercadopago/create-preference'
 
 
   createPreference(itemData: any): Observable<any> {

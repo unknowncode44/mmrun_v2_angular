@@ -18,6 +18,7 @@
         width: 100%;
         min-height: 120vh;
         position: absolute;
+        
     
     }
     
@@ -25,8 +26,12 @@
         width: 100%;
         min-height: 120vh;
         position: absolute;
-        background-color: var(--primary);
+        // background-color: var(--primary);
         opacity: 0.75;
+        background-image: url(../../../../../assets/images/MMR2022/fondo01.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
     }
     
     
@@ -46,7 +51,10 @@
                 
                 width: 100%;
                 img {
-                    height: 240px;
+                    height: auto;
+                    width: auto;
+                    transform: scale(1.6);
+                    margin-top: 2rem;
                 }
             }
             h2 {
@@ -153,8 +161,8 @@
                 width: 100%;
                 transform: scale(1.2);
                 background-color: var(--primary);
-                -webkit-clip-path: inset(11% 30% 9% 0 round 0 15% 40% 0%);
-                clip-path: inset(16% 30% 9% 0 round 0 15% 40% 0%);
+                // -webkit-clip-path: inset(11% 30% 9% 0 round 0 15% 40% 0%);
+                clip-path: polygon(63% 0, 50% 25%, 62% 98%, 0 100%, 0 0);
                 
             }
 
@@ -170,7 +178,7 @@
                     padding: 10px;
                     img {
                         width: 120%;
-                        transform: translateX(0px);
+                        transform: translateX(0px) scale(1.4);
                         margin: auto 0px;
                     }
                 }

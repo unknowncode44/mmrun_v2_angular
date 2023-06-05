@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, AfterViewInit } from '@angular/core';
 import { SharedService } from './services/shared/sared.service';
 import { MenuItem } from './mock/menu-item.model';
 import { menuItems } from './mock/menu-sections';
@@ -9,7 +9,16 @@ import { CategoriesPrices } from 'src/app/home/mock/cat-prices.mock';
 import { CategoryPrices } from 'src/app/home/mock/cat-prices.model';
 import { Router} from '@angular/router'
 
+import {Swiper} from 'swiper'
+
+
+
 import { UiService } from '../dashboard/ui/services/ui.service';
+
+interface ResourcesFile {
+  title: string,
+  url: string
+}
 
 
 @Component({
@@ -18,7 +27,8 @@ import { UiService } from '../dashboard/ui/services/ui.service';
   styleUrls: ['./home.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class HomeComponent {
+export class HomeComponent implements AfterViewInit{
+
 
   opened: boolean = false
   menu_cats: MenuItem[] = menuItems
@@ -31,6 +41,47 @@ export class HomeComponent {
   uiList: any[] = [] 
 
   tituloEncabezado = ''
+
+  resources: ResourcesFile[] = [
+    {
+      title: "Reglamento",
+      url: 'https://www.africau.edu/images/default/sample.pdf'  
+    },
+    {
+      title: "Planilla de inscripcion",
+      url: 'https://www.africau.edu/images/default/sample.pdf'  
+    },
+    {
+      title: "Deslinde de responsabilidad",
+      url: 'https://www.africau.edu/images/default/sample.pdf'  
+    },
+    {
+      title: "Otro documento",
+      url: 'https://www.africau.edu/images/default/sample.pdf'  
+    },
+    {
+      title: "Otro Documento",
+      url: 'https://www.africau.edu/images/default/sample.pdf'  
+    },
+  ]
+
+  sponsors1: string[] = [
+    '../../assets/images/MMR2022/Logo----Blanco-PNG.png',
+    '../../assets/images/MMR2022/Logo----Blanco-PNG.png',
+    '../../assets/images/MMR2022/Logo----Blanco-PNG.png'
+    
+  ]
+
+  sponsors2: string[] = [
+    '../../assets/images/MMR2022/Logo----Blanco-PNG.png',
+    '../../assets/images/MMR2022/Logo----Blanco-PNG.png',
+    '../../assets/images/MMR2022/Logo----Blanco-PNG.png'
+    
+  ]
+
+  resources2: string[] = [
+    'Documento 1', 'Documento 2', 'Documento 3', 'Documento 4', 'Documento 5'
+  ]
  
 
   constructor(
@@ -40,6 +91,27 @@ export class HomeComponent {
     
     ){
 
+  }
+
+  ngAfterViewInit(): void {
+      const swiper0 = new Swiper('.swiper-container0', {
+        autoplay: {
+          delay: 2500,
+          reverseDirection: false,
+          disableOnInteraction: false
+        },
+        loop: true,
+        autoHeight: true
+      })
+      const swiper1 = new Swiper('.swiper-container1', {
+        autoplay: {
+          delay: 2000,
+          reverseDirection: true,
+          disableOnInteraction: false
+        },
+        loop: true,
+        autoHeight: true
+      })
   }
 
   ngOnInit(): void {
