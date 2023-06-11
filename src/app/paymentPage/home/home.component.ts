@@ -10,12 +10,36 @@ import { Router } from '@angular/router';
 export class PaymentHomeComponent implements OnInit {
   r: string
   runner: any
-  paymentData: any
+  paymentData   : any
+  categories    : any[]
+  prices        : any[]
+  discounts     : any[]
 
-  constructor(private paymentService: PaymentServiceService, private router: Router, private renderer: Renderer2){}
+  constructor(
+    private paymentService: PaymentServiceService, 
+    private router: Router, 
+    private renderer: Renderer2
+    ){}
 
   ngOnInit(): void {
     this.r = localStorage.getItem('runner')
+
+    this.paymentService.getAllPrices().subscribe({
+      next: (data) =>  this.prices = data,
+      error: (e) =>  console.error(e),
+      complete: () => {
+        console.log(this.prices);
+      }
+    })
+
+    this.paymentService.getAllDiscounts().subscribe({
+      next: (data) =>  this.discounts = data,
+      error: (e) =>  console.error(e),
+      complete: () => {
+        console.log(this.discounts);
+      }
+    })
+    
     
     this.runner = JSON.parse(this.r)
     this.paymentData =  {

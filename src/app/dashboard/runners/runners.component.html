@@ -1,17 +1,16 @@
 <div class="wrapper">
-    <div class="title">Corredores</div>
-    <div class="content">
-        <div class="utilities">
-            <div class="totals">
-                <div class="icon"><ion-icon name="walk"></ion-icon></div>
-                <div class="total">{{runnersqty}}</div>
-            </div>
-            <div class="add-new">
-                <div class="icon"><ion-icon name="add"></ion-icon></div>
-                <div class="total">Agregar</div>
-            </div>
+    <div class="title-container">
+        
+        <div class="title">Corredores</div>
+        <div class="button">
+            <div class="add">Agregar <ion-icon name="add"></ion-icon></div>
         </div>
+    </div>
+    <div class="content">
         <div class="table-container">
+            <div *ngIf="!loaded" class="overlay">
+                <p-progressSpinner styleClass="w-4rem h-4rem" strokeWidth="8" fill="var(--surface-ground)" animationDuration="1.5s"></p-progressSpinner>
+            </div>
             <div class="table">
                 <div class="card">
                     <p-table 
@@ -23,10 +22,10 @@
                     [tableStyle]="{'min-width': '20rem'}"
                     [globalFilterFields]="['name']"
                     >
-                        <ng-template pTemplate="caption">
+                        <ng-template pTemplate="caption" style="padding: 0.25rem 0.5rem">
                             <div style="display: flex; flex-direction: row-reverse">
                                 <span style="display: flex; flex-direction: row-reverse">
-                                    <input pInputText style="max-width: 80%; height: 35px" type="text" placeholder="Buscar Nombre">
+                                    <input pInputText style="max-width: 80%; height: 25px; font-size: 0.9em" type="text" placeholder="Buscar Nombre">
                                     <ion-icon style="margin: auto 4px" name="search"></ion-icon>
                                 </span>
                             </div>
@@ -34,7 +33,7 @@
                         
                         <ng-template pTemplate="header" let-columns>
                             <tr>
-                                <th># Corredor</th>
+                                <th># </th>
                                 <th>Nombre</th>
                                 <th>Email</th>
                                 <th>Edad</th>

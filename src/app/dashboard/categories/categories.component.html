@@ -1,17 +1,15 @@
 <div class="wrapper">
-    <div class="title">Circuitos</div>
-    <div class="content">
-        <div class="utilities">
-            <div class="totals">
-                <div class="icon"><ion-icon name="analytics"></ion-icon></div>
-                <div class="total">{{categoriesQty}}</div>
-            </div>
-            <div class="add-new" (click)="showNewCategoryDialog()">
-                <div class="icon"><ion-icon name="add"></ion-icon></div>
-                <div class="total">Agregar</div>
-            </div>
+    <div class="title-container">
+        <div class="title">Circuitos</div>
+        <div class="button" (click)="showNewCategoryDialog()">
+            <div class="add">Agregar <ion-icon name="add"></ion-icon></div>
         </div>
+    </div>
+    <div class="content">
         <div class="table-container">
+            <div *ngIf="!loaded" class="overlay">
+                <p-progressSpinner styleClass="w-4rem h-4rem" strokeWidth="8" fill="var(--surface-ground)" animationDuration="1.5s"></p-progressSpinner>
+            </div>
             <p-toast position="top-right" key="tr" severity></p-toast>
             <div class="table">
                 <div class="card">

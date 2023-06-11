@@ -1,15 +1,162 @@
 <div class="wrapper">
-    <div class="title">Precios</div>
+    <div class="title-container">
+        <div class="title">Precios</div>
+        <!-- <div class="button">
+            <div class="add">Agregar <ion-icon name="add"></ion-icon></div>
+        </div> -->
+    </div>
     <div class="content">
         <div class="table-container">
-            <div class="table"></div>
+            <div *ngIf="!loaded" class="overlay">
+                <p-progressSpinner styleClass="w-4rem h-4rem" strokeWidth="8" fill="var(--surface-ground)" animationDuration="1.5s"></p-progressSpinner>
+            </div>
+            <div class="table">
+                <div class="card">
+                    <p-table
+                    #prices1
+                    [value]="pricesList"
+                    responsiveLayout="stack"
+                    [breakpoint]="'800px'"
+                    [tableStyle]="{'min-width': '20rem'}">
+                    <ng-template
+                    pTemplate="header"
+                    let-columns>
+                        <tr>
+                            <th>ID</th>
+                            <th>Circuito</th>
+                            <th>Precio</th>
+                            <th>Ultima Actualizacion</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </ng-template>
+                        <ng-template pTemplate="body" let-prices let-columns="columns">
+                            <tr>
+                                <td><span class="p-column-title">ID</span>{{prices.id}}         </td>
+                                <td><strong><span class="p-column-title">Circuito </span>{{prices.title}}   </strong></td>
+                                <td><span class="p-column-title">Precio</span>$  {{prices.precio}}   </td>
+                                <td><span class="p-column-title">Ultima Actualizacion</span>{{parseDate(prices.updatedAt)}}</td>
+                                
+                                <td>
+                                    <span class="p-column-title">Acciones</span>
+                                    <div class="actions">
+                                        <div class="update"><ion-icon (click)="showNewPriceDialog(prices.id.toString())"  style="font-size: 1.5em; margin: 0px 4px; cursor: pointer" color="success" name="create"  ></ion-icon></div>
+                                        <!-- <div class="delete"><ion-icon style="font-size: 1.5em; margin: 0px 4px; cursor: pointer" color="danger" name="trash"    ></ion-icon></div> -->
+                                    </div>
+                                </td>
+                            </tr>
+                            
+                        </ng-template>
+                </p-table>
+                <p-dialog header="Modificar Precio" [(visible)]="visible" [style]="{width: '60vw'}">
+                    <ng-template pTemplate="body">
+                        <form [formGroup]="pricesForm" (ngSubmit)="updatePrice(updatedPriceValue)">
+                            <div>
+                                <label for="oldPrice">Precio Actual</label>
+                                <input type="number" id="oldPrice" name="oldPrice" formControlName="oldPrice">
+                            </div>
+                            <div>
+                                <label for="newPrice">Nuevo Precio</label>
+                                <input type="number" id="newPrice" name="newPrice" formControlName="newPrice">
+                            </div>
+                            
+                            <div>
+                                <button type="submit" [disabled]="pricesForm.invalid" >{{buttonText}}</button>
+                            </div>
+                        </form>
+
+                    </ng-template>
+                </p-dialog>
+
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="title">Descuentos y Promociones</div>
+    <div class="title-container">
+        <div class="title">Descuentos y Promociones</div>
+        <div class="button" (click)="showNewDiscountDialog()">
+            <div class="add">Agregar <ion-icon name="add"></ion-icon></div>
+        </div>
+    </div>
     <div class="content">
         <div class="table-container">
-            <div class="table"></div>
+            <p-toast position="top-right" key="tr" severity></p-toast>
+            <div *ngIf="!loaded" class="overlay">
+                <p-progressSpinner styleClass="w-4rem h-4rem" strokeWidth="8" fill="var(--surface-ground)" animationDuration="1.5s"></p-progressSpinner>
+            </div>
+            <div class="table">
+                <div class="card">
+                    <p-table
+                    #discounts1
+                    [value]="discountList"
+                    responsiveLayout="stack"
+                    [breakpoint]="'800px'"
+                    [tableStyle]="{'min-width': '20rem'}">
+                        <ng-template
+                        pTemplate="header"
+                        let-columns>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Codigo Cupon / Tipo</th>
+                                <th>Porcentaje</th>
+                                <th>Activo</th>
+                                <th>Ultima Actualizacion</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-discounts let-columns="columns">
+                            <tr>
+                                <td><span class="p-column-title">ID                     </span>{{discounts.id}}                     </td>
+                                <td><span class="p-column-title">Nombre                 </span>{{discounts.discountName}}           </td>
+                                <td><span class="p-column-title">Codigo Cupon / Tipo    </span>{{discounts.tipo}}                   </td>
+                                <td><span class="p-column-title">Porcentaje             </span>{{discounts.percentage}} %           </td>
+                                <td><span class="p-column-title">Activo                 </span><p-badge [value]="badge(discounts.active).text" [severity]="badge(discounts.active).style"></p-badge>                </td>
+                                <td><span class="p-column-title">Ultima Actualizacion   </span>{{parseDate(discounts.updatedAt)}}   </td>
+                                
+                                <td>
+                                    <span class="p-column-title">Acciones</span>
+                                    <div class="actions">
+                                        <div class="update"><ion-icon (click)="showUpdateDiscountDialog(discounts.id)" style="font-size: 1.5em; margin: 0px 4px; cursor: pointer" color="success" name="create"  ></ion-icon></div>
+                                        <div class="delete"><ion-icon (click)="delete(discounts.id)" style="font-size: 1.5em; margin: 0px 4px; cursor: pointer" color="danger" name="trash"    ></ion-icon></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            
+                        </ng-template>    
+
+                    </p-table>
+
+                    <p-dialog header="Nuevo Descuento" [(visible)]="newDiscountFormVisible" [style]="{width: '60vw'}">
+                        <ng-template pTemplate="body">
+                            <form [formGroup]="discountForm" (ngSubmit)="saveChanges()">
+                                <div>
+                                    <label for="discountName">Nombre</label>
+                                    <input type="text" id="discountName" formControlName="discountName">
+                                </div>
+                                <div>
+                                    <label for="tipo">Codigo Cupon</label>
+                                    <input type="text" id="tipo" formControlName="tipo">
+                                </div>
+                                <div>
+                                    <label for="percentage">Porcentaje</label>
+                                    <input type="number" id="percentage" formControlName="percentage">
+                                </div>
+                                
+                                <div class="checkbox">
+                                    <label for="active">Activar</label>
+                                    <p-checkbox formControlName="active" value="true" inputId="active"></p-checkbox>
+                                </div>
+                                <div>
+                                    <button type="submit" [disabled]="discountForm.invalid" >{{buttonText}}</button>
+                                </div>
+                            </form>
+
+                        </ng-template>
+                    </p-dialog>
+
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -4,14 +4,44 @@
     justify-content: start;
     height: 100%;
     width: 100%;
-    .title {
-        width: 100%;
-        height: 60px;
-        padding: 4px 16px;
-        color: var(--primary);
-        font-size: 2.4em;
-        font-weight: 800;
-        text-transform: uppercase;
+    .title-container {
+        padding: 4px 32px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        .title {
+            width: 75%;
+            height: 40px;
+            color: var(--primary);
+            font-size: 1.8em;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+        .button {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: center;
+            width: 10%;
+            padding: auto 0px;
+            .add {
+                padding: 8% 0px;
+                display: flex;
+                flex-direction: row;
+                width: 100%;
+                text-align: center;
+                justify-content: center;
+                justify-items: center;
+                background: var(--primary);
+                border-radius: 5%;
+                height: 100%;
+                color: var(--white);
+                font-weight: 600;
+                .ion-icon {
+                    margin: auto 0px;
+                }
+            }
+            
+        }
     }
     .content {
         height: calc(100% - 60px);
@@ -47,11 +77,32 @@
         }
 
         .table-container {
-            height: calc(100% - 80px);
+            height: calc(100%);
             position: relative;
+            padding: 0.10rem 2rem;
+            .overlay {
+                z-index: 999;
+                width: calc(100% - 4rem);
+                height: calc(100%);
+                background-color: var(--white);
+                opacity: 0.5;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                justify-items: center;
+                position: absolute;
+            }
             .table {
                 max-height: 100%;
                 overflow: auto;
+                th {
+                    padding: 0.5rem 1rem !important;
+                }
+                td {
+                    padding: 0.5rem 1rem !important;
+                }
+
             }
         }
     }
@@ -63,8 +114,79 @@
     justify-content: center;
 }
 
-@media (min-width: 800px) {
+form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 8px 10%;
+    div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0px 15%;
+        label {
+            width: 100%;
+            text-align: start;
+        }
+        input{
+            height: 54px;
+            width: 100%;
+            border-radius: 8px;
+            background: var(--secondary);
+            color: var(--primary);
+            font-weight: 600;
+            padding: 0px 8px;
+            
+        }
+        textarea {
+            border-radius: 8px;
+            background: var(--secondary);
+            color: var(--primary);
+            font-weight: 600;
+            padding: 8px 8px;
+        }
+        
+        button {
+            width: 80%;
+            height: 54px;
+            background: var(--primary);
+            margin: 8px 0px;
+            font-weight: 600;
+            font-size: 1.2em;
+        }
+    }
+    .checkbox {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        height: 54px;
+        label {
+            margin: auto 4px;
+            width: min-content;
+            
+        }
+
+    }
+}
+
+@media (max-width: 800px) {
+    
     .wrapper {
+        position: relative;
+        overflow-y: auto;
+        .title-container {
+            padding: 0px 0px;
+            .title {
+                max-width: 50%;
+                font-size: 1em;
+                margin-top: 2px;
+            }
+            .button {
+                width: 30%;
+                height: 90%;
+            }
+        }
         .content {
             .utilities {
                 .totals, .add-new {
@@ -75,6 +197,9 @@
                     }
                 }
     
+            }
+            .table-container {
+                padding: 0px 0px;
             }
         }
     }

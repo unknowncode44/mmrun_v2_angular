@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { apiURL     } from '../../variables/variables';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoriesService {
 
-  categoriesUrl: string = 'http://localhost:3040/categories'
+  baseURl: string =  apiURL 
+  categoriesUrl: string = apiURL+'/categories'
 
   constructor(private http: HttpClient) {
 

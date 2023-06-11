@@ -38,8 +38,8 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
-
-
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { BadgeModule } from 'primeng/badge';
 
 @NgModule({
   declarations: [
@@ -58,6 +58,7 @@ import { ToastModule } from 'primeng/toast';
     UiComponent,
     CategoriesComponent,
     PricesComponent,
+  
     
   ],
   imports: [
@@ -79,6 +80,8 @@ import { ToastModule } from 'primeng/toast';
     InputTextareaModule,
     ButtonModule,
     ToastModule,
+    ProgressSpinnerModule,
+    BadgeModule
   ],
 
 

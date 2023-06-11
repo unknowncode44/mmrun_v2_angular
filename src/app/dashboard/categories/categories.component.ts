@@ -36,6 +36,8 @@ export class CategoriesComponent implements OnInit {
 
   categoriesForm: FormGroup;
 
+  loaded: boolean = true
+
   constructor(
     private categoriesService: CategoriesService,
     private formBuilder: FormBuilder,
@@ -55,15 +57,15 @@ export class CategoriesComponent implements OnInit {
 
   ngOnInit(): void {
       this.visible = false
-      this.categoriesService.getAll().subscribe(
-        (data) => {
-          this.categoriesList = data
-          this.categoriesQty = this.categoriesList.length
-        },
-        (error) => {
-          console.log(error);
+      this.loaded  = false
+      this.categoriesService.getAll().subscribe({
+        next: (data) => this.categoriesList = data,
+        error: (e) => console.error(e),
+        complete: () => {
+          this.loaded = true
         }
-      )
+        
+      })
   }
 
   showDialog(id: string){
@@ -120,9 +122,8 @@ export class CategoriesComponent implements OnInit {
       circuito: this.categoriesForm.value.circuito
     }
 
-    this.categoriesService.update(this.updatedValue, payload).subscribe(
-      (data) => {
-        this.categoriesList.push(data)
+    this.categoriesService.update(this.updatedValue, payload).subscribe({
+      next: (data) => {
         this.messageService.add(
           {
             key: 'tr', 
@@ -130,35 +131,25 @@ export class CategoriesComponent implements OnInit {
             summary: 'Se modificó la categoria',
             detail: data.title 
           }
-        );
-
-        this.categoriesList = []
-
-        this.categoriesService.getAll().subscribe(
-          (data) => {
-            this.categoriesList = data
-          },
-          (error) => {
-            console.log(error);
-          }
-        )
-
-        this.newFormVisible = false
-        this.buttonText = ''
-        this.updatedValue = ''
-        this.categoriesForm.reset()
+        ); 
       },
-      (error) => {
-        this.messageService.add(
-          {
-            key: 'tr', 
-            severity: 'error', 
-            summary: 'Hubo Un Error',
-            detail: JSON.stringify(error) 
+      error: (e) => console.error(e),
+      complete: () => {
+        this.categoriesList = []
+        this.loaded  = false
+        this.categoriesService.getAll().subscribe({
+          next: (data) => this.categoriesList = data,
+          error: (e) => console.error(e),
+          complete: () => {
+            this.loaded = true
+            this.newFormVisible = false
+            this.buttonText = ''
+            this.updatedValue = ''
+            this.categoriesForm.reset()
           }
-        );
+        })
       }
-    )
+    })
 
   }
 

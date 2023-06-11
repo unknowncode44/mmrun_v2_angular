@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { apiURL } from '../../variables/variables';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UiService {
 
-  uiUrl: string = 'http://localhost:3040/ui'
+
+  uiUrl: string = apiURL+'/ui'
 
   constructor(public http: HttpClient) { }
 

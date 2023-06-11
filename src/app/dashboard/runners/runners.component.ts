@@ -44,6 +44,7 @@ export class RunnersComponent implements OnInit{
 
   runnersqty: number
   
+  loaded: boolean = true
   
   ngOnInit() {
     this.cols = [
