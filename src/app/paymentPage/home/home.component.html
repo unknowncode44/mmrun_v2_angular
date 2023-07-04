@@ -1,4 +1,19 @@
 <div class="wrapper">
+    <div *ngIf="loading"class="overlay">
+        <p-progressSpinner styleClass="w-4rem h-4rem" strokeWidth="8" fill="var(--surface-ground)" animationDuration="1.5s"></p-progressSpinner>
+    </div>
+    <p-dialog header="Redirección a Mercado Pago" [(visible)]="visible" [style]="{width: '80vw'}">
+        <ng-template pTemplate="body">
+            <strong><h3>Atención!!</h3></strong>
+            <p>Seras redirigido a Mercado Pago, una vez completado tu pago, por favor espera a ser redirigido nuevamente al sitio.</p>
+            <br>
+            <p>Esto es muy importante para que obtengas tu confirmación de pago y número de corredor.</p>
+            <br>
+            <div class="pdialog-button" style="height: 100px; display: flex; align-items: center; justify-content: center">
+                <button pButton pRipple label="Entendido!" class="p-button-success" style="margin: auto" (click)="createPayment()"></button>
+            </div>
+        </ng-template>
+    </p-dialog>
     <div class="card">
         <div class="title">
             <h2>Resumen de Inscripcion</h2>
@@ -15,8 +30,8 @@
                     <li>Nombre:  {{runner.name}}</li>
                     <li>Edad:    {{runner.edad}} Años</li>
                     <li>DNI:     {{runner.dni}}</li>
-                    <li>Genero: {{runner.genero}}</li>
-                    <li>Email: {{runner.email}}</li>
+                    <li>Genero:  {{runner.genero}}</li>
+                    <li>Email:   {{runner.email}}</li>
                 </ul>
             </div>
             <div class="subtitle">
@@ -26,30 +41,30 @@
                 <ul>
                     <li>
                         <div class="detail">Costo del circuito:</div>
-                        <div class="costo">$ 8,000</div>
+                        <div class="costo">{{ circuitCostString }}</div>
                     </li>
                     <li>
                         <div class="detail">Descuento Socio:</div>
-                        <div class="costo">-$ 800</div>
+                        <div class="costo">- {{ partnertDiscStr }}</div>
                     </li>
                     <li>
                         <div class="detail">Otros Descuentos</div>
-                        <div class="costo">$ 0</div>
+                        <div class="costo">- {{ couponDiscStr }}</div>
                     </li>
                     <br>
                     <li><strong>
                         <div class="detail">Total</div>
-                        <div class="total costo">$ 7,200</div>
+                        <div class="total costo">{{toPayString}}</div>
                     </strong></li>
                 </ul>
             </div>
 
             <div class="buttons">
                 <div class="volver">
-                    <button type="button">Volver</button>
+                    <button type="button" (click)="navigateBack()">Volver</button>
                 </div>
                 <div class="pagar">
-                    <button type="button" (click)="createPayment()">Pagar</button>
+                    <button type="button" (click)="showDialog()">Pagar</button>
                 </div>
             </div>
         </div>

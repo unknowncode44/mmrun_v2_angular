@@ -10,10 +10,12 @@ import { CategoriesComponent } from './dashboard/categories/categories.component
 import { PricesComponent } from './dashboard/prices/prices.component';
 import { SponsorsComponent } from './dashboard/sponsors/sponsors.component';
 import { UiComponent } from './dashboard/ui/ui.component';
+import { ConfirmationComponent } from './paymentPage/confirmation/confirmation.component';
 
 const routes: Routes = [
   { path: '',         component: HomeComponent},
   { path: 'payment',  component:PaymentHomeComponent },
+  { path: 'confirmation', component: ConfirmationComponent},
   { path: 'login',    component: LoginComponent},
   { path: 'dashboard', component: DashboardComponent, children: [
     {path: 'runners', component: RunnersComponent}, 

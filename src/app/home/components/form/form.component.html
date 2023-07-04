@@ -46,8 +46,18 @@
                     <p-checkbox [binary]="true" inputId="mcp" (click)="enableMCP()"></p-checkbox>
                 </div>
             </div>
-            <input type="text" id="mClubPartnerStr" placeholder="Numero de Socio" formControlName="mClubPartnerStr">
+            <div class="input-group">
+                <input type="text" id="mClubPartnerStr" placeholder="Nro de Socio" formControlName="mClubPartnerStr">
+                <div class="buttons">
+                    <button type="button" (click)="validatePartnerNumber()">Validar</button>
+                </div>
+                <div class="checked" *ngIf="partnerOk">
+                    <ion-icon name="checkbox" color="success"></ion-icon>
+                </div>
+            </div>
+            
             <div class="discounts">
+                
                 <div class="partner">
                     <p>Tengo un codigo de descuento</p>
                 </div>
@@ -55,11 +65,21 @@
                     <p-checkbox [binary]="true" inputId="dc" (click)="enableDC()"></p-checkbox>
                 </div>
             </div>
-            <input type="text" id="discCodeStr" placeholder="Codigo de descuento" formControlName="discCodeStr">
+            <div class="input-group">
+                <input type="text" id="discCodeStr" placeholder="Codigo de descuento" formControlName="discCodeStr">
+                <div class="buttons">
+                    <button type="button" (click)="validateDiscountCode()">Validar</button>
+                </div>
+                <div class="checked" *ngIf="discCode">
+                    <ion-icon name="checkbox" color="success"></ion-icon>
+                </div>
+            </div>
+            
             <div class="buttons">
                 <button id="next" class="next" type="button" (click)="goToPayment()">Siguiente</button>
             </div>
        </form>
+       <p-toast position="top-right" key="tr" severity></p-toast>
     </swiper-slide>
    </swiper-container>
 

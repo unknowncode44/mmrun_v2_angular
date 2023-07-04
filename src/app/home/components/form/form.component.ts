@@ -7,20 +7,27 @@ import { CategoriesService } from 'src/app/dashboard/categories/services/categor
 
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import * as e from 'express';
+
+import data from '../../../../assets/files/partners1.json'
+import { MessageService } from 'primeng/api';
+import { PricesService } from 'src/app/dashboard/prices/services/prices.service';
+
 
 
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  providers: [MessageService]
 })
 export class FormComponent implements OnInit{
 
   constructor(
     private router: Router,
-    private categoriesService: CategoriesService
+    private categoriesService: CategoriesService,
+    private pricesService: PricesService,
+    private messageService: MessageService
     ){}
 
 
@@ -32,7 +39,19 @@ export class FormComponent implements OnInit{
   mClubPartner: boolean = false
   discountCode: boolean = false
 
+  partnerOk : boolean = false
+  discCode  : boolean = false
+
+  partnerName: string;
+  partnerCode: string;
+
+  discountCodeStr: string
+
   categories = new Observable<any[]>
+
+  discounts: any[] =[]
+
+  discounts2: any[] = []
 
 
 
@@ -42,11 +61,21 @@ export class FormComponent implements OnInit{
     })
 
     this.categories = this.categoriesService.getAll()
+    this.pricesService.getAllDiscounts().subscribe({
+      next: (data) => {this.discounts = data, console.log(this.discounts);
+       },
+      error: (e) => console.error(e),
+      complete() {
+          
+      },
+      
+    })
 
     this.categories.subscribe(
       (data) => {
         for (let i = 0; i < data.length; i++) {
           const e = data[i];
+          
           let section = `${e.title}, $ ${e.precio}`
 
           let catPri: CategoryPrices = {name: section, price: e.precio}
@@ -56,6 +85,8 @@ export class FormComponent implements OnInit{
         }
       }
     )
+
+
 
     this.formGroup = new FormGroup({
       name: new FormControl<string>(null, Validators.required),
@@ -112,9 +143,10 @@ export class FormComponent implements OnInit{
     }
   }
 
-  goToPayment() {
+  async goToPayment() {
     let runner = {
       circuito: '',
+      price: '',
       name: '',
       dni: '',
       email: '',
@@ -122,8 +154,11 @@ export class FormComponent implements OnInit{
       fecha_nac: '',
       edad: '',
       talle: '',
-      partner: false,
-      discount: false,
+      partner: this.partnerOk,
+      partnerCode: this.partnerCode,
+      partnerName: this.partnerName,
+      discount: this.discCode,
+      discountCode: this.discountCodeStr
     }
     let circValue = this.circGroup.value.catPriceControl
     if(circValue === null || circValue === 'null'){
@@ -131,6 +166,18 @@ export class FormComponent implements OnInit{
     } else {
 
       runner.circuito = circValue
+      console.log(circValue);
+      
+      for (let i = 0; i < this.catPrices2.length; i++) {
+        const e = this.catPrices2[i];
+        console.log(e.name);
+        
+        if(circValue === e.name){
+          runner.price = e.price
+        }
+        
+      }
+      
 
       let personalValues = this.formGroup.value
 
@@ -152,10 +199,10 @@ export class FormComponent implements OnInit{
         runner.dni        = personalValues.dni.toString();
         runner.email      = personalValues.email;
         runner.genero     = personalValues.genero;
-        runner.fecha_nac  = personalValues.fecha_nac
-        runner.talle      = personalValues.talle
+        runner.fecha_nac  = personalValues.fecha_nac;
+        runner.talle      = personalValues.talle;
 
-        console.warn(runner.fecha_nac);
+        //console.warn(runner.fecha_nac);
         
         if(
           this.formGroup.controls['mClubPartnerStr'].enabled && 
@@ -164,8 +211,12 @@ export class FormComponent implements OnInit{
         }
 
         else {
-          var partner = this.checkPartnerNumber(this.formGroup.controls['mClubPartnerStr'].value)
-          runner.partner = partner
+          runner.partner = this.validatePartnerNumber()
+          if(runner.partner){
+            runner.partnerCode = this.partnerCode;
+            runner.partnerName = this.partnerName
+          }
+
           if(
             this.formGroup.controls['discCodeStr'].enabled && 
             personalValues.discCodeStr === null){
@@ -173,9 +224,10 @@ export class FormComponent implements OnInit{
             }
 
             else {
-              var discount = this.checkDiscountCode(this.formGroup.controls['discCodeStr'].value)
+              this.validateDiscountCode()
+              var discount = this.discCode
               runner.discount = discount
-
+              runner.discountCode = this.formGroup.controls['discCodeStr'].value
               runner.edad = this.calculateAge(runner.fecha_nac);
               console.warn(runner);
 
@@ -196,6 +248,72 @@ export class FormComponent implements OnInit{
     console.log(nbr);
     // CHEQUEAR NUMERO DE SOCIO ACA Y DEVOLVER BOOLEANO
     return true
+  }
+
+  validatePartnerNumber() : boolean {
+    let match: boolean = false
+    let partnerCode = this.formGroup.value.mClubPartnerStr
+    console.log(partnerCode)
+    this.partnerOk = false
+    
+    for (let i = 0; i < data.length; i++) {
+      const e = data[i];
+      if(e.Socio.toString() === partnerCode){
+        match = true
+        this.partnerOk = true
+        this.messageService.add({
+          key: 'tr', 
+          severity: 'success', 
+          summary: 'Validado',
+          detail: `Socio: ${e.Nombre}` 
+        })
+        this.partnerName = e.Nombre
+        this.partnerCode = e.Socio.toString()
+        break
+      }
+    }
+    if(!match){
+      this.messageService.add({
+        key: 'tr', 
+        severity: 'error', 
+        summary: 'Numero Invalido',
+        detail: 'Por favor revisa el codigo' 
+      })
+      
+    }
+    return match
+  }
+
+
+  validateDiscountCode() : boolean {
+    let match: boolean = false 
+    let discCode = this.formGroup.value.discCodeStr
+    console.log(discCode)
+    for (let i = 0; i < this.discounts.length; i++) {
+      const e = this.discounts[i];
+      if(e.tipo === discCode && e.active){
+        match = true
+        this.discCode = true
+        this.messageService.add({
+          key: 'tr', 
+          severity: 'success', 
+          summary: 'Validado',
+          detail: `Socio: ${e.tipo}` 
+        })
+        this.discountCodeStr = e.tipo
+        break
+      }
+      if(!match){
+        this.messageService.add({
+          key: 'tr', 
+          severity: 'error', 
+          summary: 'Codigo no existe',
+          detail: 'Revisa el codigo' 
+        })
+      }
+      
+    }
+    return match
   }
 
   //! OBTENER CODIGOS DE DESCUENTO

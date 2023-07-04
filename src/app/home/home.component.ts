@@ -44,24 +44,20 @@ export class HomeComponent implements AfterViewInit{
 
   resources: ResourcesFile[] = [
     {
-      title: "Reglamento",
-      url: 'https://www.africau.edu/images/default/sample.pdf'  
+      title: "Reglamento y Guias",
+      url: '../assets/files/04_reglamento_general_y_guias.pdf'  
     },
     {
-      title: "Planilla de inscripcion",
-      url: 'https://www.africau.edu/images/default/sample.pdf'  
+      title: "Planilla de acompañantes",
+      url: '../assets/files/03_planilla_de_acompanantes.pdf'  
     },
     {
       title: "Deslinde de responsabilidad",
-      url: 'https://www.africau.edu/images/default/sample.pdf'  
+      url: '../assets/files/02_deslinde_de_responsabilidad.pdf'  
     },
     {
-      title: "Otro documento",
-      url: 'https://www.africau.edu/images/default/sample.pdf'  
-    },
-    {
-      title: "Otro Documento",
-      url: 'https://www.africau.edu/images/default/sample.pdf'  
+      title: "Certificado Médico",
+      url: '../assets/files/01_certificado_medico.pdf'
     },
   ]
 

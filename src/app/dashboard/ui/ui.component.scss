@@ -1,7 +1,7 @@
 .wrapper {
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    justify-content: flex-start;
     height: 100%;
     width: 100%;
     .title {
@@ -23,7 +23,7 @@
             height: 80px;
             display: flex;
             flex-direction: row;
-            justify-content: start;
+            justify-content: flex-start;
             .totals, .add-new {
                 width: 50%;
                 height: 65px;

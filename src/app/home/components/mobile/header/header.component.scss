@@ -5,7 +5,7 @@
     height: 87vh;
     overflow-x: hidden;
     overflow-y: hidden;
-    justify-content: start;
+    justify-content: flex-start;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -129,7 +129,7 @@
         height: 100vh;
         overflow-x: hidden;
         overflow-y: hidden;
-        justify-content: start;
+        justify-content: flex-start;
         text-align: center;
         display: flex;
         flex-direction: row;

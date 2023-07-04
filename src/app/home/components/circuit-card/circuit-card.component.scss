@@ -65,7 +65,7 @@
         swiper-container {
             swiper-slide {
                 .card {
-                    height: 90%;
+                    height: 100%;
                     .title {
                         height: 80px;
                         h2 {
@@ -83,6 +83,24 @@
             }
         }
     }
+}
+
+@media (min-height: 650px) {
+    .title {
+        height: 40px;
+        h2 {
+            font-size: 1.8em;
+        }
+    }
+    .list {
+        ul {
+            li {
+                font-size: 1.2em;
+            }
+        }
+    }
+
+
 }
 
 

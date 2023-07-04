@@ -21,21 +21,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.uiService.getAll().subscribe(
-      (data) => {
-        this.uiList = data
-        for (let i = 0; i < this.uiList.length; i++) {
-          const e = this.uiList[i];
-          if(e.id === 1){
-            this.tituloEncabezado = e.item
-          }
-          if(e.id === 2){
-            this.textoEncabezado = e.item
-          }
-          
-        }
-      }
-    )
+   
   }
 
   goToForm(formId: string) : void{

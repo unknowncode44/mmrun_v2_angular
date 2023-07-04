@@ -19,7 +19,17 @@ export class PaymentServiceService {
     ) { }
   
     
-  url: string = apiURL+'/mercadopago/create-preference'
+  url: string = apiURL+'/mercadopago/create-preference';
+  notification: string = apiURL+'/mercadopago/notification'
+  runnerUrl: string = apiURL+'/runners';
+
+  getRunners():Observable<any> {
+    return this.http.get(this.runnerUrl)
+  }
+
+  createRunner(runner: any): Observable<any> {
+    return this.http.post(this.runnerUrl, runner)
+  }
 
 
   createPreference(itemData: any): Observable<any> {
@@ -32,6 +42,14 @@ export class PaymentServiceService {
 
   getAllDiscounts(): Observable<any> {
     return this.prices.getAllDiscounts()
+  }
+
+  createMerchantNotification(moID:string): Observable<any> {    
+    const body: any =  {
+      resource: 'https://api.mercadolibre.com/merchant_orders/'+moID,
+      topic: 'merchant_order'
+    }
+    return this.http.post(this.notification, body)
   }
 
 

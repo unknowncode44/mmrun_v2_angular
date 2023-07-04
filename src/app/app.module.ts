@@ -7,10 +7,12 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 
 import { CookieService } from 'ngx-cookie-service';
 
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+
 
 import {MatSelectModule} from '@angular/material/select';
 
-import { SelectButtonModule } from 'primeng/selectbutton';
+
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -31,15 +33,20 @@ import { UiComponent } from './dashboard/ui/ui.component';
 import { CategoriesComponent } from './dashboard/categories/categories.component';
 import { PricesComponent } from './dashboard/prices/prices.component';
 
-import { TableModule } from 'primeng/table';
-import { TagModule } from 'primeng/tag';
-import { DialogModule } from 'primeng/dialog';
-import { DynamicDialogModule } from 'primeng/dynamicdialog';
-import { InputTextareaModule } from 'primeng/inputtextarea';
-import { ButtonModule } from 'primeng/button';
-import { ToastModule } from 'primeng/toast';
-import { ProgressSpinnerModule } from 'primeng/progressspinner';
-import { BadgeModule } from 'primeng/badge';
+import { TableModule }            from 'primeng/table';
+import { SelectButtonModule }     from 'primeng/selectbutton';
+import { TagModule }              from 'primeng/tag';
+import { DialogModule }           from 'primeng/dialog';
+import { DynamicDialogModule }    from 'primeng/dynamicdialog';
+import { InputTextareaModule }    from 'primeng/inputtextarea';
+import { ButtonModule }           from 'primeng/button';
+import { ToastModule }            from 'primeng/toast';
+import { ProgressSpinnerModule }  from 'primeng/progressspinner';
+import { BadgeModule }            from 'primeng/badge';
+import { InputTextModule }        from 'primeng/inputtext';
+import { RadioButtonModule }      from 'primeng/radiobutton';
+import { PaymentHomeComponent } from './paymentPage/home/home.component';
+import { ConfirmationComponent } from './paymentPage/confirmation/confirmation.component';
 
 @NgModule({
   declarations: [
@@ -58,8 +65,8 @@ import { BadgeModule } from 'primeng/badge';
     UiComponent,
     CategoriesComponent,
     PricesComponent,
-  
-    
+    ConfirmationComponent,
+    PaymentHomeComponent
   ],
   imports: [
     BrowserModule,
@@ -81,11 +88,13 @@ import { BadgeModule } from 'primeng/badge';
     ButtonModule,
     ToastModule,
     ProgressSpinnerModule,
-    BadgeModule
+    BadgeModule,
+    InputTextModule,
+    RadioButtonModule
   ],
 
 
-  providers: [CookieService],
+  providers: [CookieService, {provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

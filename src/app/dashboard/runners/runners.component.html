@@ -8,24 +8,28 @@
     </div>
     <div class="content">
         <div class="table-container">
+            <p-toast position="top-right" key="tr" severity></p-toast>
             <div *ngIf="!loaded" class="overlay">
                 <p-progressSpinner styleClass="w-4rem h-4rem" strokeWidth="8" fill="var(--surface-ground)" animationDuration="1.5s"></p-progressSpinner>
             </div>
             <div class="table">
                 <div class="card">
                     <p-table 
-                    #dt1
-                    [value]="runnerMock"
-                    dataKey="name" 
+                    #dt
+                    [value]="runners"
+                    dataKey="id"
+                    [rows]="15" 
                     responsiveLayout="stack" 
                     [breakpoint]="'800px'"
+                    [rowsPerPageOptions]="[10, 15, 25]"
+                    [paginator]="true"
                     [tableStyle]="{'min-width': '20rem'}"
-                    [globalFilterFields]="['name']"
+                    [globalFilterFields]="['name', 'email', 'runnerNumber', 'catValue']"
                     >
                         <ng-template pTemplate="caption" style="padding: 0.25rem 0.5rem">
                             <div style="display: flex; flex-direction: row-reverse">
                                 <span style="display: flex; flex-direction: row-reverse">
-                                    <input pInputText style="max-width: 80%; height: 25px; font-size: 0.9em" type="text" placeholder="Buscar Nombre">
+                                    <input pInputText style="max-width: 80%; height: 25px; font-size: 0.9em" type="text" (input)="applyFilterGlobal($event, 'contains')" placeholder="Filtrar">
                                     <ion-icon style="margin: auto 4px" name="search"></ion-icon>
                                 </span>
                             </div>
@@ -61,7 +65,12 @@
                                 <td><span class="p-column-title">Circuito</span><strong>{{runner.catValue}}</strong></td>
                                 <td><span class="p-column-title">Socio</span>{{runner.partnerID}}</td>
                                 <td><span class="p-column-title">Estado</span><p-tag [value]="runner.status" [severity]="getSeverity(runner.status)"></p-tag></td>
-                                <td><span class="p-column-title">Acciones</span><ion-icon style="font-size: 1.5em;" color="danger" name="trash"></ion-icon></td>
+                                <td><span class="p-column-title">Acciones</span><ion-icon style="font-size: 1.5em;" color="danger" name="trash" (click)="deleteRunner(runner.id)"></ion-icon></td>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="emptymessage">
+                            <tr>
+                                <td colspan="7">No se encontraron corredores</td>
                             </tr>
                         </ng-template>
                         

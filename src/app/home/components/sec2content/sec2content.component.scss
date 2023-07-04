@@ -19,6 +19,11 @@
         font-weight: 800;
         font-style: italic;
     }
+    strong {
+        font-size: 1.2em;
+        color: white;
+        font-weight: 600
+    };
     p {
         margin-top: 16px;
         font-size: 1.2em;
@@ -116,7 +121,7 @@
                 width: 100%;
                 height: 600px;
                 transform: translateX(-100px);
-                background-image: url('../../../../assets/images/MMR2022/png1.png');
+                //background-image: url('../../../../assets/images/MMR2022/png1.png');
                 background-size: contain;
                 background-repeat: no-repeat;
             }
@@ -125,7 +130,11 @@
                 width: 80%;
                 height: 100%;
                 clip-path: polygon(25% 25%, 100% 0%, 100% 100%, 0% 100%);
-                background-color: var(--tertiary);
+                // background-color: var(--tertiary);
+                background-image: url('../../../../assets/images/MMR2022/wp2.jpeg');
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
                 transform: scale(1.8) translateY(-300px) translateX(50px);
             }
 
