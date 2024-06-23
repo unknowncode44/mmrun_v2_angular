@@ -11,14 +11,22 @@ import { PricesComponent } from './dashboard/prices/prices.component';
 import { SponsorsComponent } from './dashboard/sponsors/sponsors.component';
 import { UiComponent } from './dashboard/ui/ui.component';
 import { ConfirmationComponent } from './paymentPage/confirmation/confirmation.component';
+import { WalkaroundComponent } from './paymentPage/walkaround/walkaround.component';
+import { ResultadosComponent } from './resultados/resultados.component';
+import { ResultComponent } from './resultados/result/result.component';
 
 const routes: Routes = [
-  { path: '',         component: HomeComponent},
+  { path: '',         component: DashboardComponent},
   { path: 'payment',  component:PaymentHomeComponent },
-  { path: 'confirmation', component: ConfirmationComponent},
+  { path: 'confirmation/:param?/:id?', component: ConfirmationComponent},
+  { path: 'walk/:runner', component: WalkaroundComponent},
   { path: 'login',    component: LoginComponent},
+  { path: 'resultados', component: ResultadosComponent, children: [
+
+  ]},
+  { path: 'result/:runner', component: ResultComponent},
   { path: 'dashboard', component: DashboardComponent, children: [
-    {path: 'runners', component: RunnersComponent}, 
+    {path: 'runners', component: RunnersComponent},
     {path: 'categories', component: CategoriesComponent},
     {path: 'pricing', component: PricesComponent},
     {path: 'sponsors', component: SponsorsComponent},

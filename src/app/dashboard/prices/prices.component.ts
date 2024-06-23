@@ -3,6 +3,7 @@ import { CategoriesService } from '../categories/services/categories.service';
 import { PricesService } from './services/prices.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
+import { BehaviorSubject, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-prices',
@@ -25,8 +26,14 @@ export class PricesComponent implements OnInit {
   discountForm            : FormGroup
   pricesForm              : FormGroup
   updatedDate             : string
-  loaded                  : boolean 
-  
+  loaded                  : boolean
+
+  refreshPrices$ = new BehaviorSubject<boolean>(false)
+  refreshDiscount$ = new BehaviorSubject<boolean>(false)
+
+  prices$     = this.refreshPrices$.pipe(switchMap(_ => this.pricesService.getAllPrices()))
+  discounts$  = this.refreshDiscount$.pipe(switchMap(_ => this.pricesService.getAllDiscounts()))
+
   constructor(
     private pricesService  : PricesService,
     private formBuilder    : FormBuilder,
@@ -51,31 +58,26 @@ export class PricesComponent implements OnInit {
 
   ngOnInit(): void {
     this.loaded = false
-    this.pricesService.getAllPrices().subscribe(
+    this.prices$.subscribe(
       {
         next: (data) => {
+          this.loaded = true;
           this.pricesList = data,
           console.log(data);
-          
+
         },
         error: (e) => console.error(e),
-        complete: () =>  {
-          this.loaded = true;
-        }
       }
-        
+
     )
     this.loaded = false
-    this.pricesService.getAllDiscounts().subscribe(
+    this.discounts$.subscribe(
       {
         next: (data) => {
+          this.loaded = true;
           this.discountList = data
         },
-        error: (e) => console.error(e),
-        complete: () => {
-          this.loaded = true;
-        }
-        
+        error: (e) => console.error(e)
       }
     )
   }
@@ -140,6 +142,7 @@ export class PricesComponent implements OnInit {
 
     this.pricesService.addOneDiscount(payload).subscribe({
       next: (discount) => {
+        this.refreshDiscount$
         this.messageService.add(
           {
             key: 'tr',
@@ -171,16 +174,17 @@ export class PricesComponent implements OnInit {
             error: (e) => console.error(e),
             complete: () => {
               this.loaded = true;
-            } 
+            }
           }
         )
       }
     })
-    
+
   }
 
   // Modificar descuento
   updateDiscount() {
+    this.refreshDiscount$
     if(this.discountForm.invalid){
       this.messageService.add(
         {
@@ -233,7 +237,7 @@ export class PricesComponent implements OnInit {
             complete: () => {
               this.loaded = true;
             }
-            
+
           }
         )
       }
@@ -245,12 +249,13 @@ export class PricesComponent implements OnInit {
     let _id = Number(id)
     this.pricesService.deleteDiscount(_id).subscribe({
       next: (success) => {
+        this.refreshDiscount$
         this.messageService.add(
           {
-            key: 'tr', 
-            severity: 'success', 
+            key: 'tr',
+            severity: 'success',
             summary: `Se borro el descuento con ID: ${_id}`,
-            
+
           }
         )
       },
@@ -267,11 +272,11 @@ export class PricesComponent implements OnInit {
             complete: () => {
               this.loaded = true;
             }
-            
+
           }
         )
       }
-      
+
     })
   }
 
@@ -283,8 +288,8 @@ export class PricesComponent implements OnInit {
     this.updatedPriceValue = id
     for (let i = 0; i < this.pricesList.length; i++) {
       const e = this.pricesList[i];
-      
-      
+
+
       if(id === e.id.toString()){
         this.pricesForm.setValue({
           oldPrice: Number(e.precio),
@@ -294,7 +299,7 @@ export class PricesComponent implements OnInit {
       }
     }
   }
-  
+
   // Actualizar precio
   updatePrice(id: string) {
     if(this.pricesForm.invalid){
@@ -335,6 +340,7 @@ export class PricesComponent implements OnInit {
     if(category.title !== "") {
       this.pricesService.updatePrice(Number(id), category).subscribe({
         next: (_category) => {
+          this.refreshPrices$
           this.messageService.add(
             {
               key: 'tr',
@@ -368,15 +374,15 @@ export class PricesComponent implements OnInit {
                 this.loaded = true;
               }
             }
-              
+
           )
         }
       })
-    }    
+    }
   }
 
 
-  // Utilidad para parsear fecha 
+  // Utilidad para parsear fecha
   parseDate(dateString: string) : string {
     let date = new Date(dateString)
     let parsedDate = date.toLocaleDateString()
@@ -399,7 +405,7 @@ export class PricesComponent implements OnInit {
       return true
     }
     else {
-      return false 
+      return false
     }
   }
 

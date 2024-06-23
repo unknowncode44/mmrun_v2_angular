@@ -13,6 +13,8 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import {MatSelectModule} from '@angular/material/select';
 
 
+
+
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -47,6 +49,10 @@ import { InputTextModule }        from 'primeng/inputtext';
 import { RadioButtonModule }      from 'primeng/radiobutton';
 import { PaymentHomeComponent } from './paymentPage/home/home.component';
 import { ConfirmationComponent } from './paymentPage/confirmation/confirmation.component';
+import { WalkaroundComponent } from './paymentPage/walkaround/walkaround.component';
+import { ResultadosComponent } from './resultados/resultados.component';
+import { ResultComponent } from './resultados/result/result.component';
+import { OrdinalSpanishPipe } from './ordinal-spanish.pipe';
 
 @NgModule({
   declarations: [
@@ -66,7 +72,11 @@ import { ConfirmationComponent } from './paymentPage/confirmation/confirmation.c
     CategoriesComponent,
     PricesComponent,
     ConfirmationComponent,
-    PaymentHomeComponent
+    PaymentHomeComponent,
+    WalkaroundComponent,
+    ResultadosComponent,
+    ResultComponent,
+    OrdinalSpanishPipe
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,5 @@
 
+
     .form-title {
         margin: 16px 8px;
         height: 60px;
@@ -153,23 +154,23 @@
             }
         }
     }
-    
 
 
-@media (min-width: 800px) { 
+
+@media (min-width: 800px) {
     #regForm {
         max-height: 120vh;
     }
     .form-title {
         h2 {
             font-size: 40px;
-        } 
+        }
     }
     .form-section {
         h3 {
             font-style: italic;
         }
-        
+
     }
 
     swiper-container {
@@ -185,12 +186,12 @@
         flex-direction: column;
         justify-content: center;
         padding: 0px 20%;
-        select#genre, select#talle {
+        select.genre, select.talle {
             width: 99%;
         }
-        
-        
-        
+
+
+
     }
 }
 

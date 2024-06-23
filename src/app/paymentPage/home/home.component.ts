@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy, Renderer2 } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
 import { PaymentServiceService } from '../services/payment-service.service';
 import { Router } from '@angular/router';
+import { BehaviorSubject, Observable, Subscription, switchMap } from 'rxjs';
 
 interface PricesSchedule {
   priceConcat: string,
@@ -18,42 +19,45 @@ interface PricesSchedule {
 export class PaymentHomeComponent implements OnInit, OnDestroy {
   r: string
   runner: any
-  paymentData   : any
-  categories    : any[]
-  prices        : any[] = []
-  discounts     : any[]
-  priceConcat   : any[]
+  paymentData               : any
+  categories                : any[]
+  prices                    : any[]     = []
+  discounts                 : any[]
+  priceConcat               : any[]
+  partnerDiscount           : number    = 0;
+  otherDiscounts            : number    = 0;
+  circuitCost               : number    = 0;
+  partnerDiscountPercentage : number    = 0;
+  couponDiscountPercentage  : number    = 0;
+  circuitCostString         : string
+  partnertDiscStr           : string
+  couponDiscStr             : string
+  toPay                     : number    = 0;
+  toPayString               : string
+  runnerNbrs                : number[]  = []
+  loading                   : boolean   = true
+  visible                   : boolean   = false
+  btnString                 : string    = 'Pagar'
+  wlk                       : boolean   = false
+  runners                   : any[]     = []
 
-  partnerDiscount : number = 0;
-  otherDiscounts  : number = 0;
-  circuitCost   : number   = 0;
+  // runners$      : Observable<any[]>
+  refreshRunners$  = new BehaviorSubject<boolean>(false)
 
-  partnerDiscountPercentage : number = 0;
-  couponDiscountPercentage  : number = 0; 
-
-  circuitCostString : string
-  partnertDiscStr   : string
-  couponDiscStr     : string
-
-  toPay             : number = 0;
-  toPayString       : string
-  
-  runnerNbrs: number[] = []
-
-  loading: boolean = true
-
-  visible: boolean = false
+  runners$ = this.refreshRunners$.pipe(switchMap(_ => this.paymentService.getRunners()))
 
 
   constructor(
-    private paymentService: PaymentServiceService, 
-    private router: Router, 
+    private paymentService: PaymentServiceService,
+    private router: Router,
     private renderer: Renderer2,
     private currencyPipe: CurrencyPipe
     ){}
 
   ngOnInit(): void {
+
     this.r = localStorage.getItem('runner')
+
     this.runner = JSON.parse(this.r)
 
     this.paymentService.getAllPrices().subscribe({
@@ -71,9 +75,9 @@ export class PaymentHomeComponent implements OnInit, OnDestroy {
       },
       error: (e) =>  console.error(e),
       complete: () => {
-        
-        console.log(this.prices);
-        
+
+        // console.log(this.prices);
+
       }
     })
 
@@ -84,7 +88,7 @@ export class PaymentHomeComponent implements OnInit, OnDestroy {
         if(this.runner.discount) {
           for (let i = 0; i < this.discounts.length; i++) {
             const e = this.discounts[i];
-            if(this.runner.discountCode === e.tipo){
+            if(this.runner.discountCode.toLowerCase() === e.tipo.toLowerCase()){
               this.couponDiscountPercentage = e.percentage
               //console.log(`P: ${this.couponDiscountPercentage} ok!`);
             }
@@ -102,8 +106,8 @@ export class PaymentHomeComponent implements OnInit, OnDestroy {
 
         }
 
-        
-        
+
+
         this.circuitCost        = Number(this.runner.price)
         this.partnerDiscount    = this.calculatePercentage(this.circuitCost, this.partnerDiscountPercentage )
         this.otherDiscounts     = this.calculatePercentage(this.circuitCost, this.couponDiscountPercentage  )
@@ -121,14 +125,33 @@ export class PaymentHomeComponent implements OnInit, OnDestroy {
           title: '',
           quantity: 1,
           unit_price: this.toPay,
+          user_id: ''
         }
         this.loading = false
+      }
+    })
+
+    if(this.runner.circuito === "Caminata X Lago , $ 0") {
+      this.btnString = 'Confirmar'
+      this.wlk = true
+    }
+
+
+
+    this.runners$.subscribe({
+      next: (runners) => {
+        this.runners = runners
+        this.runnerNbrs = []
+        for (let i = 0; i < this.runners.length; i++) {
+          const e = this.runners[i];
+          this.runnerNbrs.push(+e.runnerNumber)
+        }
       }
     })
   }
 
   ngOnDestroy(): void {
-      localStorage.removeItem('runner')
+    //localStorage.removeItem('runner')
   }
 
   calculatePercentage(whole: number, percentage: number): number {
@@ -150,14 +173,14 @@ export class PaymentHomeComponent implements OnInit, OnDestroy {
       if(e > highest) {
         highest = e
       }
-      
-    }
 
-    return highest
+    }
+    let plusOne = (highest) + 1
+    return plusOne
   }
 
   createThreeDigits(number: number): string {
-    const threeDigits =  number.toString().padStart(3,'0')
+    const threeDigits =  (number).toString().padStart(3,'0')
     return threeDigits
   }
 
@@ -169,9 +192,9 @@ export class PaymentHomeComponent implements OnInit, OnDestroy {
     return randomNumber;
   }
 
-  saveRunner(preferenceID: string, initPoint: string, status: string){
+  saveRunner(preferenceID: string, initPoint: string, status: string, identificationNumber: string){
     let _runner = {
-      runnerNumber: this.createThreeDigits(this.findHighestRunnerNumber(this.runnerNbrs)+1),
+      runnerNumber: this.createThreeDigits((this.findHighestRunnerNumber(this.runnerNbrs))),
       name: this.runner.name,
       email: this.runner.email,
       partnerID: this.runner.partnerCode,
@@ -184,15 +207,31 @@ export class PaymentHomeComponent implements OnInit, OnDestroy {
       status_detail: status,
       tshirtSize: this.runner.talle,
       preference_id: preferenceID,
-      payment_amount: this.toPay
+      payment_amount: this.toPay,
+      identification_number: identificationNumber,
+      discountText: this.runner.discountCode
     }
+
+    // console.log(_runner.runnerNumber);
+
+
+    //localStorage.setItem('preference_id', preferenceID)
     this.paymentService.createRunner(_runner).subscribe({
+      next: async (runner) => {
+
+        this.refreshRunners$.next(true)
+
+        _runner.runnerNumber = runner.id.toString()
+
+        await this.paymentService.updateRunner(runner.id, {"runnerNumber": _runner.runnerNumber})
+
+        localStorage.setItem('runner', JSON.stringify(_runner))
+      },
       complete: () => {
         this.navigateToUrl(initPoint)
       }
     })
   }
-  
 
   createPayment(){
     this.loading = true
@@ -202,41 +241,71 @@ export class PaymentHomeComponent implements OnInit, OnDestroy {
     let id: string = this.generateID().toString();
     let status: string;
     this.paymentData.title = `Inscripcion MMRun 2023 ${id}`
+    this.paymentData.user_id = id
 
     localStorage.setItem('reference_id', this.paymentData.title)
 
-    reference_id = this.paymentData.title
-    this.paymentService.createPreference(this.paymentData).subscribe(
-      {
-        next: (data) => {
-          console.log(data),
-          initPoint = data.body.init_point
-          status = data.reference_id
-
-        },
-        error: (e) => console.log(e),
-        complete: () => {
-          this.paymentService.getRunners().subscribe({
-            next: (runners) => {
-              for (let i = 0; i < runners.length; i++) {
-                const e = runners[i];
-                this.runnerNbrs.push(Number(e.runnerNumber))
-              }
-            },
-            error: (e) => console.error(e),
-            complete: () => {
-              this.saveRunner(reference_id, initPoint, status)
-            }
-          });
-          
-        },
+    if(this.runner.circuito === "Caminata X Lago , $ 0"){
+      let _runner = {
+        runnerNumber: this.createThreeDigits((this.findHighestRunnerNumber(this.runnerNbrs))),
+        name: this.runner.name,
+        email: this.runner.email,
+        partnerID: this.runner.partnerCode,
+        catValue: this.runner.circuito,
+        runnerAge: this.runner.edad,
+        dni: this.runner.dni,
+        runnerBirthDate: this.runner.fecha_nac,
+        runnerGenre: this.runner.genero,
+        status: "approved",
+        status_detail: status,
+        tshirtSize: this.runner.talle,
+        preference_id: null,
+        payment_amount: this.toPay,
+        identification_number: this.generateID().toString(),
+        discountText: this.runner.discountCode
       }
-    )
+
+      this.paymentService.createRunner(_runner).subscribe({
+        next: (runner) => {
+          this.refreshRunners$.next(false)
+          const newId = runner.id.toString()
+          _runner.runnerNumber = newId
+          this.paymentService.updateRunner(newId, _runner)
+          //localStorage.setItem('runner', runner);
+          this.paymentService.sendWalkConfirmationEmail(_runner.email, _runner.name, _runner.runnerNumber, _runner.identification_number).subscribe({
+            next: () => this.router.navigate(['/walk', JSON.stringify(_runner)])
+          })
+        },
+      })
+    }
+
+    else {
+      reference_id = this.paymentData.title
+      this.paymentService.createPreference(this.paymentData).subscribe(
+        {
+          next: (data) => {
+            // console.log(data),
+            initPoint = data.body.init_point
+            status = data.reference_id
+          },
+          error: (e) => console.log(e),
+          complete: () => {
+
+            this.saveRunner(reference_id, initPoint, status, id)
+          },
+        }
+      )
+    }
   }
 
   showDialog() {
-    this.loading = true
-    this.visible = !this.visible
+    if(this.wlk === true) {
+      this.createPayment()
+    }
+    else {
+      this.loading = true
+      this.visible = !this.visible
+    }
   }
 
   navigateToUrl(url: string) {

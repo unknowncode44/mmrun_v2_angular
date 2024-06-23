@@ -252,6 +252,7 @@ mat-sidenav-container {
             }
 
             .sponsors {
+                transform: translateY(80px);
                 min-height: 100vh;
                 max-height: 100vh;
                 max-width: 100%;
@@ -286,7 +287,8 @@ mat-sidenav-container {
                                 .sponsor-logo {
                                     max-height: 220px;
                                     img {
-                                        width: 30%;
+                                        max-height: 220px;
+                                        width: auto;
                                     }
                                 }
                             }
@@ -431,7 +433,7 @@ mat-sidenav-container {
                                 .side-img {
                                     width: 100%;
                                     height: 100%;
-                                    background-image: url('../../assets/images/MMR2022/png3.png');
+                                    background-image: url('../../assets/images/MMR2022/152.jpeg');
                                     background-repeat: no-repeat;
                                     background-size: cover;
                                     opacity: 0.75;
@@ -509,7 +511,7 @@ mat-sidenav-container {
                 }
                 .resources {
                     margin-top: 80px;
-                    transform: translateY(10px);
+                    transform: translateY(70px);
                 }
                 .swiper-sponsors {
                     // min-height: 80vh;
@@ -532,8 +534,43 @@ mat-sidenav-container {
     }
 }
 
+// motog8plus
+
+@media (min-width: 391px) and (max-height: 860px) {
+    mat-sidenav-content {
+        .parallax-wrapper {
+            .section-2 {
+                .section2-content {
+                    max-height: 300vh;
+                    .register-form {
+                        height: 150vh;
+                        .form-wrapper {
+                            min-height: 100% !important;
+
+                        }
+                    }
+                }
+
+
+            }
+            .resources {
+                transform: translateY(290px) !important;
+                
+
+            }
+            .sponsors {
+                transform: translateY(260px) !important;
+            }
+        }
+    }
+
+}
+
 // iphone 12 pro / Pixel 5 / 
 @media (min-width: 390px) and (max-height: 860px) {
+    input, select {
+        max-height: 50px
+    }
     mat-sidenav-container {
         mat-sidenav-content {
             .parallax-wrapper {
@@ -544,16 +581,17 @@ mat-sidenav-container {
                         
                         height: 310vh;
                         .register-form {
-                            max-height: 128vh;
+                            max-height: 138vh;
                         }
                     }
                 }
                 .resources {
                     margin-top: 80px;
-                    transform: translateY(10px);
+                    transform: translateY(155px);
                 }
                 .sponsors {
                     max-height: 70vh !important;
+                    transform: translateY(160px);
                     .swiper-sponsors {
                         // min-height: 80vh;
                         max-height: 70vh;
@@ -787,7 +825,7 @@ mat-sidenav-container {
                                 .side-img {
                                     width: 100%;
                                     height: 100%;
-                                    background-image: url('../../assets/images/MMR2022/png3.png');
+                                    background-image: url('../../assets/images/MMR2022/152.jpeg');
                                     background-repeat: no-repeat;
                                     background-size: cover;
                                     opacity: 0.75;
@@ -948,6 +986,19 @@ mat-sidenav-container {
 @media (min-width: 1200px) and (max-width: 1250px) and (min-height: 600px) {
     .swiper-sponsors {
         max-height: 40vh !important;
+    }
+}
+
+@media (max-width: 359px) and (max-height: 850px) {
+    .register-form {
+        height: 165vh;
+    }
+
+    .resources {
+        transform: translateY(400px);
+    }
+    .sponsors {
+        transform: translateY(400px) !important;
     }
 }
 

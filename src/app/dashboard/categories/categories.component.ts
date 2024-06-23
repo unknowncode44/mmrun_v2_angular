@@ -64,7 +64,7 @@ export class CategoriesComponent implements OnInit {
         complete: () => {
           this.loaded = true
         }
-        
+
       })
   }
 
@@ -73,14 +73,14 @@ export class CategoriesComponent implements OnInit {
     this.categoriesForm.reset()
     this.buttonText = 'Modificar'
     this.updatedValue = id
-    
+
     for (let i = 0; i < this.categoriesList.length; i++) {
       const e = this.categoriesList[i];
-      
-      
+
+
       if(e.id.toString() === id.toString()) {
-        
-        
+
+
         this.categoriesForm.setValue({
           precio: Number(e.precio),
           title: e.title,
@@ -105,10 +105,10 @@ export class CategoriesComponent implements OnInit {
     if(this.categoriesForm.invalid){
       this.messageService.add(
         {
-          key: 'tr', 
-          severity: 'error', 
+          key: 'tr',
+          severity: 'error',
           summary: 'Formulario Invalido',
-          detail: 'Revisa los campos' 
+          detail: 'Revisa los campos'
         }
       )
     }
@@ -126,12 +126,12 @@ export class CategoriesComponent implements OnInit {
       next: (data) => {
         this.messageService.add(
           {
-            key: 'tr', 
-            severity: 'success', 
+            key: 'tr',
+            severity: 'success',
             summary: 'Se modificó la categoria',
-            detail: data.title 
+            detail: data.title
           }
-        ); 
+        );
       },
       error: (e) => console.error(e),
       complete: () => {
@@ -158,17 +158,17 @@ export class CategoriesComponent implements OnInit {
     if(this.categoriesForm.invalid){
       this.messageService.add(
         {
-          key: 'tr', 
-          severity: 'error', 
+          key: 'tr',
+          severity: 'error',
           summary: 'Formulario Invalido',
-          detail: 'Revisa los campos' 
+          detail: 'Revisa los campos'
         }
       )
     }
 
     const payload = {
       precio: this.categoriesForm.value.precio.toString(),
-      title: this.categoriesForm.value.title,
+      title: this.categoriesForm.value.title+" $ "+this.categoriesForm.value.precio.toString()+".00",
       largada: this.categoriesForm.value.largada,
       kit_corredor: this.categoriesForm.value.kit_corredor,
       categories: this.categoriesForm.value.categorias,
@@ -180,10 +180,10 @@ export class CategoriesComponent implements OnInit {
         this.categoriesList.push(data)
         this.messageService.add(
           {
-            key: 'tr', 
-            severity: 'success', 
+            key: 'tr',
+            severity: 'success',
             summary: 'Se creó la categoria',
-            detail: data.title 
+            detail: data.title
           }
         );
         this.newFormVisible = false
@@ -191,10 +191,10 @@ export class CategoriesComponent implements OnInit {
       (error) => {
         this.messageService.add(
           {
-            key: 'tr', 
-            severity: 'error', 
+            key: 'tr',
+            severity: 'error',
             summary: 'Hubo Un Error',
-            detail: JSON.stringify(error) 
+            detail: JSON.stringify(error)
           }
         );
       }
@@ -217,13 +217,13 @@ export class CategoriesComponent implements OnInit {
       () => {
         this.messageService.add(
           {
-            key: 'tr', 
-            severity: 'success', 
+            key: 'tr',
+            severity: 'success',
             summary: 'Se borro la categoria',
-            
+
           }
         );
-        
+
         this.categoriesList = []
 
         this.categoriesService.getAll().subscribe(

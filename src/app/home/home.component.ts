@@ -14,6 +14,7 @@ import {Swiper} from 'swiper'
 
 
 import { UiService } from '../dashboard/ui/services/ui.service';
+import { SponsorsService } from '../dashboard/sponsors/service/sponsors.service';
 
 interface ResourcesFile {
   title: string,
@@ -63,15 +64,10 @@ export class HomeComponent implements AfterViewInit{
 
   sponsors1: string[] = [
     '../../assets/images/MMR2022/Logo----Blanco-PNG.png',
-    '../../assets/images/MMR2022/Logo----Blanco-PNG.png',
-    '../../assets/images/MMR2022/Logo----Blanco-PNG.png'
-    
   ]
 
   sponsors2: string[] = [
     '../../assets/images/MMR2022/Logo----Blanco-PNG.png',
-    '../../assets/images/MMR2022/Logo----Blanco-PNG.png',
-    '../../assets/images/MMR2022/Logo----Blanco-PNG.png'
     
   ]
 
@@ -83,7 +79,8 @@ export class HomeComponent implements AfterViewInit{
   constructor(
     private sServ: SharedService, 
     private router: Router,
-    private uiService: UiService
+    private uiService: UiService,
+    private sponsorService: SponsorsService
     
     ){
 
@@ -108,6 +105,8 @@ export class HomeComponent implements AfterViewInit{
         loop: true,
         autoHeight: true
       })
+
+
   }
 
   ngOnInit(): void {
@@ -130,7 +129,20 @@ export class HomeComponent implements AfterViewInit{
       
     }
 
-    console.log(this.tituloEncabezado);
+    this.sponsorService.getAll().subscribe({
+      next: (res) => {
+        for (let i = 0; i < res.length; i++) {
+          const e  = res[i];
+          if(e.tipo === 'Auspicia'){
+            this.sponsors1.push(e.imgUrl)
+          }
+          else {
+            this.sponsors2.push(e.imgUrl)
+          }
+          
+        }
+      }
+    })
     
     
   }

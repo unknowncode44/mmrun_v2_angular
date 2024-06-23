@@ -22,6 +22,8 @@
     "@angular/platform-browser-dynamic": "^16.0.0",
     "@angular/router": "^16.0.0",
     "@ionic/angular": "^7.0.6",
+    "axios": "^1.4.0",
+    "file-saver": "^2.0.5",
     "mat-sidenav-menu": "^0.10.1",
     "ngx-cookie-service": "^16.0.0",
     "parallax-js": "^3.1.0",
@@ -29,6 +31,7 @@
     "rxjs": "~7.8.0",
     "swiper": "^9.3.1",
     "tslib": "^2.3.0",
+    "xlsx": "^0.18.5",
     "zone.js": "~0.13.0"
   },
   "devDependencies": {

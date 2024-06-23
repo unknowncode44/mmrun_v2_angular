@@ -5,16 +5,16 @@
     <div class="card">
         <div class="header">
             <h2>{{paymentStatusString}}</h2>
-            <h4>{{runner.name}}, gracias por participar!</h4>
-            <p *ngIf="!approved">Tu pago esta siendo procesado, te notificaremos a la direccion de mail <strong>{{mail}}</strong> una vez que se haya acreditado. Debajo puedes ver tu numero de corredor, pero recuerda que si el pago no se acredita en las proximas 48hs el mismo puede cambiar. En caso de que tengas dudas o consultas puedes escribirnos a <a href="https://api.whatsapp.com/send?phone=542995817788&text=%C2%A1Hola%21+MMRUN" target="_blank">este numero</a></p>
-            <p *ngIf="approved">Ya recibimos tu pago! Debajo puedes ver tu numero de corredor. Si tienes consultas o dudas nos puedes escribir a <a href="https://api.whatsapp.com/send?phone=542995817788&text=%C2%A1Hola%21+MMRUN" target="_blank">este numero</a></p>
+            <h4>{{runner.name}} Gracias por participar!</h4>
+            <p *ngIf="!approved">Tu pago esta siendo procesado, te notificaremos a tu direccion de mail <strong>{{mail}}</strong> una vez que se haya acreditado. En caso de que tengas dudas o consultas puedes escribirnos a <a href="mailto:marimenucorun.22@gmail.com" target="_blank">marimenucorun.22@gmail.com</a></p>
+            <p *ngIf="approved">Ya recibimos tu pago! Debajo puedes ver tu numero de corredor. Si tienes consultas o dudas nos puedes escribir a <a href="mailto:marimenucorun.22@gmail.com" target="_blank">marimenucorun.22@gmail.com</a></p>
             
         </div>
-        <div class="runner-number">
+        <div *ngIf="approved" class="runner-number">
             <h3>Corredor Numero</h3>
             <h1>{{runner.runnerNumber}}</h1>
         </div>
-        <div class="logo">
+        <div *ngIf="!loading" class="logo">
             <img src="../../../assets/images/MMR2022/Logo----Blanco-con-rosa-PNG.png" alt="">
         </div>
     </div>

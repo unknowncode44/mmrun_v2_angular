@@ -1,12 +1,106 @@
 <div class="wrapper">
-    <div class="title">Sponsors</div>
-    <div class="content">
-        <div class="utilities">
-            <div class="totals"></div>
-            <div class="add-new"></div>
+    <div class="title-container">
+        <div class="title">Sponsors</div>
+        <div class="button">
+            <div class="add" (click)="openDialog()">Agregar <ion-icon name="add"></ion-icon></div>
         </div>
+    </div>
+    <div class="content">
         <div class="table-container">
-            <div class="table"></div>
+            <p-toast position="top-right" key="tr" severity></p-toast>
+            <div *ngIf="!loaded" class="overlay">
+                <p-progressSpinner styleClass="w-4rem h-4rem" strokeWidth="8" fill="var(--surface-ground)" animationDuration="1.5s"></p-progressSpinner>
+            </div>
+            <div class="table">
+                <div class="card">
+                    <p-table 
+                    #dt
+                    [value]="sponsors"
+                    dataKey="id"
+                    [rows]="15" 
+                    responsiveLayout="stack" 
+                    [breakpoint]="'800px'"
+                    [rowsPerPageOptions]="[10, 15, 25]"
+                    [paginator]="true"
+                    [tableStyle]="{'min-width': '20rem'}"
+                    [globalFilterFields]="['name', 'email', 'runnerNumber', 'catValue']"
+                    >
+                        <ng-template pTemplate="caption" style="padding: 0.25rem 0.5rem">
+                            <div style="display: flex; flex-direction: row-reverse">
+                                <span style="display: flex; flex-direction: row-reverse">
+                                    <input pInputText id="buscar" style="max-width: 80%; height: 25px; font-size: 0.9em" type="text" (input)="applyFilterGlobal($event, 'contains')" placeholder="Filtrar">
+                                    <ion-icon style="margin: auto 4px" name="search"></ion-icon>
+                                </span>
+                            </div>
+                        </ng-template>
+                        
+                        <ng-template pTemplate="header" let-columns>
+                            <tr>
+                                <th># ID</th>
+                                <th>Nombre Sponsor</th>
+                                <th>Tipo</th>
+                                <th>Imagen</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </ng-template>
+
+                        <ng-template pTemplate="body" let-sponsor let-columns="columns">
+                            <tr>
+                                <td><span class="p-column-title"># ID</span>{{sponsor.id}}</td>
+                                <td><span class="p-column-title">Nombre Sponsor</span>{{sponsor.sponsorName}}</td>
+                                <td><span class="p-column-title">Tipo</span>{{sponsor.tipo}}</td>
+                                <td><span class="p-column-title">Link Imagen</span><a [href]="sponsor.imgUrl" target="_blank">Ver Imagen</a></td>
+                                <td><span class="p-column-title">Estado</span><p-tag [value]="sponsor.active? 'Activo' : 'Inactivo'" [severity]="getSeverity(sponsor.active)"></p-tag></td>
+                                <td><span class="p-column-title">Acciones</span><ion-icon style="font-size: 1.5em;" color="danger" name="trash" (click)="deleteSponsor(sponsor.id)"></ion-icon></td>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="emptymessage">
+                            <tr>
+                                <td colspan="7">No se encontraron corredores</td>
+                            </tr>
+                        </ng-template>
+                        
+                        
+                    </p-table>
+
+
+                    <p-dialog header="Nuevo Sponsor" [(visible)]="newFormVisible" [style]="{width: '60vw'}">
+                        <ng-template pTemplate="body">
+                            <form [formGroup]="sponsorForm" (ngSubmit)="saveChanges()">
+                                <div>
+                                    <label for="title" id="title_label">Nombre</label>
+                                    <input type="text" id="title" formControlName="nombre">
+                                </div>
+                                <div>
+                                    <label for="tipo">Tipo de Sponsor</label>
+                                    <select id="tipo" formControlName="tipo">
+                                        <option value="Acompaña" [defaultSelected]="true">Acompaña</option>
+                                        <option value="Auspicia">Auspicia</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="url">Elige Imagen</label>
+                                    <input type="file" id="url" formControlName="url" (change)="onFileSelected($event)" accept="image/*">
+                                    
+                                </div>
+                                <div>
+                                    <label for="active">Estado</label>
+                                    <select id="active" formControlName="active">
+                                        <option value="active" [defaultSelected]="true">Activo</option>
+                                        <option value="inactive">Inactivo</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <button type="button" (click)="saveChanges()" [disabled]="sponsorForm.invalid">{{buttonText}}</button>
+                                </div>
+                            </form>
+                        </ng-template>
+                    
+                    </p-dialog>
+
+                </div>
+            </div>
         </div>
     </div>
 </div>

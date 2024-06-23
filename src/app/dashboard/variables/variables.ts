@@ -1,1 +1,3 @@
-export const apiURL: string = 'http://localhost:3040'
+//export const apiURL: string = 'https://api.mmrun.com.ar/'
+
+export const apiURL: string = 'https://api.mmrun.hvdevs.com'

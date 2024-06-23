@@ -11,7 +11,7 @@
                 <div class="card">
                     <p-table
                     #prices1
-                    [value]="pricesList"
+                    [value]="(prices$ | async)"
                     responsiveLayout="stack"
                     [breakpoint]="'800px'"
                     [tableStyle]="{'min-width': '20rem'}">
@@ -32,7 +32,7 @@
                                 <td><strong><span class="p-column-title">Circuito </span>{{prices.title}}   </strong></td>
                                 <td><span class="p-column-title">Precio</span>$  {{prices.precio}}   </td>
                                 <td><span class="p-column-title">Ultima Actualizacion</span>{{parseDate(prices.updatedAt)}}</td>
-                                
+
                                 <td>
                                     <span class="p-column-title">Acciones</span>
                                     <div class="actions">
@@ -41,7 +41,7 @@
                                     </div>
                                 </td>
                             </tr>
-                            
+
                         </ng-template>
                 </p-table>
                 <p-dialog header="Modificar Precio" [(visible)]="visible" [style]="{width: '60vw'}">
@@ -55,7 +55,7 @@
                                 <label for="newPrice">Nuevo Precio</label>
                                 <input type="number" id="newPrice" name="newPrice" formControlName="newPrice">
                             </div>
-                            
+
                             <div>
                                 <button type="submit" [disabled]="pricesForm.invalid" >{{buttonText}}</button>
                             </div>
@@ -85,7 +85,7 @@
                 <div class="card">
                     <p-table
                     #discounts1
-                    [value]="discountList"
+                    [value]="(discounts$ | async)"
                     responsiveLayout="stack"
                     [breakpoint]="'800px'"
                     [tableStyle]="{'min-width': '20rem'}">
@@ -110,7 +110,7 @@
                                 <td><span class="p-column-title">Porcentaje             </span>{{discounts.percentage}} %           </td>
                                 <td><span class="p-column-title">Activo                 </span><p-badge [value]="badge(discounts.active).text" [severity]="badge(discounts.active).style"></p-badge>                </td>
                                 <td><span class="p-column-title">Ultima Actualizacion   </span>{{parseDate(discounts.updatedAt)}}   </td>
-                                
+
                                 <td>
                                     <span class="p-column-title">Acciones</span>
                                     <div class="actions">
@@ -119,8 +119,8 @@
                                     </div>
                                 </td>
                             </tr>
-                            
-                        </ng-template>    
+
+                        </ng-template>
 
                     </p-table>
 
@@ -139,7 +139,7 @@
                                     <label for="percentage">Porcentaje</label>
                                     <input type="number" id="percentage" formControlName="percentage">
                                 </div>
-                                
+
                                 <div class="checkbox">
                                     <label for="active">Activar</label>
                                     <p-checkbox formControlName="active" value="true" inputId="active"></p-checkbox>

@@ -1,9 +1,12 @@
 <div class="wrapper">
     <div class="title-container">
-        
+
         <div class="title">Corredores</div>
         <div class="button">
             <div class="add">Agregar <ion-icon name="add"></ion-icon></div>
+        </div>
+        <div class="button">
+            <div class="add" (click)="exportToExcel()">Descargar<ion-icon name="download"></ion-icon></div>
         </div>
     </div>
     <div class="content">
@@ -14,17 +17,19 @@
             </div>
             <div class="table">
                 <div class="card">
-                    <p-table 
+                    <p-table
                     #dt
-                    [value]="runners"
+                    [value]="(parsedRunner)"
+                    [paginator]="true"
+                    [rows]="1500"
+                    [showCurrentPageReport]="true"
+                    [first]="0"
                     dataKey="id"
-                    [rows]="15" 
-                    responsiveLayout="stack" 
+                    responsiveLayout="stack"
                     [breakpoint]="'800px'"
                     [rowsPerPageOptions]="[10, 15, 25]"
-                    [paginator]="true"
-                    [tableStyle]="{'min-width': '20rem'}"
-                    [globalFilterFields]="['name', 'email', 'runnerNumber', 'catValue']"
+                    [tableStyle]="{'min-width': '50rem'}"
+                    [globalFilterFields]="['Nombre', 'Email', 'Numero_de_Corredor', 'Categoria']"
                     >
                         <ng-template pTemplate="caption" style="padding: 0.25rem 0.5rem">
                             <div style="display: flex; flex-direction: row-reverse">
@@ -34,7 +39,7 @@
                                 </span>
                             </div>
                         </ng-template>
-                        
+
                         <ng-template pTemplate="header" let-columns>
                             <tr>
                                 <th># </th>
@@ -42,30 +47,46 @@
                                 <th>Email</th>
                                 <th>Edad</th>
                                 <th>DNI</th>
-                                <th>Fecha Nac</th>
                                 <th>Genero</th>
                                 <th>Talle</th>
+                                <th>Fecha Nac</th>
+                                <!-- <th>Nro.Socio MM</th> -->
                                 <th>Circuito</th>
-                                <th>Socio</th>
+                                <th>Valor Circuito</th>
                                 <th>Estado</th>
+                                <th>Monto Abonado</th>
+                                <th>% Desc</th>
+                                <th>Tipo Desc</th>
+                                <th>Cod. Desc</th>
+                                <th>Creado</th>
                                 <th>Acciones</th>
                             </tr>
                         </ng-template>
 
                         <ng-template pTemplate="body" let-runner let-columns="columns">
                             <tr>
-                                <td><span class="p-column-title"># Corredor</span>{{runner.runnerNumber}}</td>
-                                <td><span class="p-column-title">Nombre</span>{{runner.name}}</td>
-                                <td><span class="p-column-title">Email</span>{{runner.email}}</td>
-                                <td><span class="p-column-title">Edad</span>{{runner.runnerAge}}</td>
-                                <td><span class="p-column-title">DNI</span>{{runner.dni}}</td>
-                                <td><span class="p-column-title">Fecha Nac</span>{{runner.runnerBirthDate}}</td>
-                                <td><span class="p-column-title">Genero</span>{{runner.runnerGenre}}</td>
-                                <td><span class="p-column-title">Talle</span>{{runner.tshirtSize}}</td>
-                                <td><span class="p-column-title">Circuito</span><strong>{{runner.catValue}}</strong></td>
-                                <td><span class="p-column-title">Socio</span>{{runner.partnerID}}</td>
-                                <td><span class="p-column-title">Estado</span><p-tag [value]="runner.status" [severity]="getSeverity(runner.status)"></p-tag></td>
-                                <td><span class="p-column-title">Acciones</span><ion-icon style="font-size: 1.5em;" color="danger" name="trash" (click)="deleteRunner(runner.id)"></ion-icon></td>
+                                <td><span class="p-column-title"># Corredor</span>{{runner.Numero_de_corredor}}</td>
+                                <td><span class="p-column-title">Nombre</span>{{runner.Nombre}}</td>
+                                <td><span class="p-column-title">Email</span>{{runner.Email}}</td>
+                                <td><span class="p-column-title">Edad</span>{{runner.Edad}}</td>
+                                <td><span class="p-column-title">DNI</span>{{runner.DNI}}</td>
+                                <td><span class="p-column-title">Genero</span>{{runner.Genero}}</td>
+                                <td><span class="p-column-title">Talle</span>{{runner.Talle}}</td>
+                                <td><span class="p-column-title">Fecha Nac</span>{{runner.Fecha_Nac}}</td>
+                                <!-- <td><span class="p-column-title">Socio</span>{{runner.Nro_Socio_MM}}</td> -->
+                                <td><span class="p-column-title">Circuito</span><strong>{{runner.Categoria}}</strong></td>
+                                <td><span class="p-column-title">Valor Circuito</span>{{runner.Valor_Categoria}}</td>
+                                <td><span class="p-column-title">Estado</span><p-tag [value]="runner.Status" [severity]="getSeverity(runner.Status)"></p-tag></td>
+                                <td><span class="p-column-title text-center">Monto Abonado</span>{{runner.Monto_Abonado | currency}}</td>
+                                <td><span class="p-column-title">% Desc</span>{{runner.Descuento}}</td>
+                                <td><span class="p-column-title">Tipo Desc</span>{{runner.Tipo_de_descuento}}</td>
+                                <td><span class="p-column-title">Cod Desc</span>{{runner.Codigo_de_descuento}}</td>
+                                <td><span class="p-column-title">Creado</span>{{parseDate(runner.Fecha_Creado)}}</td>
+                                <td><span class="p-column-title">Acciones</span>
+                                  <ion-icon style="font-size: 1.5em;" color="danger" name="trash" (click)="deleteRunner(runner.ID)"></ion-icon>
+                                  <ion-icon style="font-size: 1.5em;" color="primary" name="mail" (click)="showResendMailDialog()"></ion-icon>
+
+                                </td>
                             </tr>
                         </ng-template>
                         <ng-template pTemplate="emptymessage">
@@ -73,9 +94,48 @@
                                 <td colspan="7">No se encontraron corredores</td>
                             </tr>
                         </ng-template>
-                        
-                        
+
+
+
+
                     </p-table>
+
+                    <p-dialog header="Reenviar email" [(visible)]="visible" [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
+                      <div class="my-overlay"></div>
+                      <form action="submit">
+                        <div class="input-container">
+                          <label for="email">Email: </label>
+                          <input name="email" type="text">
+                        </div>
+
+                        <div class="input-container">
+                          <label for="runnerNumber">Corredor: </label>
+                          <input name="runnerNumber" type="text">
+                        </div>
+
+                        <div class="input-container">
+                          <label for="name">Nombre: </label>
+                          <input name="name" type="text">
+                        </div>
+
+                        <div class="input-container">
+                          <label for="distance">Distancia: </label>
+                          <input name="distance" type="text">
+                        </div>
+
+                        <div class="input-container">
+                          <label for="">Aprobado: </label>
+                          <!-- <p-selectButton [options]="" optionLabel="label" optionValue="value"></p-selectButton> -->
+                        </div>
+
+                        <div class="btn-container">
+                          <button type="submit"> Enviar </button>
+                        </div>
+
+                      </form>
+
+
+                    </p-dialog>
 
                 </div>
             </div>

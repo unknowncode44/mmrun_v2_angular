@@ -7,9 +7,10 @@
     </div>
     <div class="circ-field" >
         <form [formGroup]="circGroup">
-            <select name="circ" id="circ" formControlName="catPriceControl">
+            <select formControlName="catPriceControl">
                 <option value="null">--</option>
                 <option *ngFor="let item of catPrices2" (value)="item.name">{{item.name}}</option>
+
             </select>
         </form>
     </div>
@@ -23,17 +24,17 @@
             <input type="text" placeholder="Apellido" formControlName="lastname">
             <input type="email" placeholder="email@email.com" formControlName="email">
             <input type="number" placeholder="DNI" formControlName="dni">
-            <select name="genre" id="genre" placeholder="Genero" selectedIndex="0" formControlName="genero">
+            <select placeholder="Genero" class="genre" selectedIndex="0" formControlName="genero">
                 <option value="Femenino">Femenino</option>
                 <option value="Masculino">Masculino</option>
             </select>
-            <select name="talle" id="talle" selectedIndex="0" formControlName="talle">
+            <!-- <select class="talle" selectedIndex="0" formControlName="talle">
                 <option value="talle_s">Camiseta Talle S</option>
                 <option value="talle_m">Camiseta Talle M</option>
                 <option value="talle_l">Camiseta Talle L</option>
                 <option value="talle_xl">Camiseta Talle XL</option>
                 <option value="talle_xxl">Camiseta Talle XXL</option>
-            </select>
+            </select> -->
             <div class="form-section">
                 <h3>Fecha de Nacimiento</h3>
             </div>
@@ -47,7 +48,7 @@
                 </div>
             </div>
             <div class="input-group">
-                <input type="text" id="mClubPartnerStr" placeholder="Nro de Socio" formControlName="mClubPartnerStr">
+                <input ype="text" id="mClubPartnerStr" placeholder="Nro de Socio" formControlName="mClubPartnerStr">
                 <div class="buttons">
                     <button type="button" (click)="validatePartnerNumber()">Validar</button>
                 </div>
@@ -55,9 +56,9 @@
                     <ion-icon name="checkbox" color="success"></ion-icon>
                 </div>
             </div>
-            
+
             <div class="discounts">
-                
+
                 <div class="partner">
                     <p>Tengo un codigo de descuento</p>
                 </div>
@@ -74,7 +75,7 @@
                     <ion-icon name="checkbox" color="success"></ion-icon>
                 </div>
             </div>
-            
+
             <div class="buttons">
                 <button id="next" class="next" type="button" (click)="goToPayment()">Siguiente</button>
             </div>
@@ -83,5 +84,5 @@
     </swiper-slide>
    </swiper-container>
 
-   
+
 
